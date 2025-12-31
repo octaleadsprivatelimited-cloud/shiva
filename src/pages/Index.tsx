@@ -4,8 +4,10 @@ import {
   StatsSection,
   ServicesSection,
   SolutionsSection,
-  TestimonialsSection,
   AboutSection,
+  TestimonialsSection,
+  VideoSection,
+  GallerySection,
   PartnersSection,
   BlogSection,
 } from "@/components/home";
@@ -18,6 +20,8 @@ const Index = () => {
       <ServicesSection />
       <SolutionsSection />
       <AboutSection />
+      <VideoSection />
+      <GallerySection />
       <TestimonialsSection />
       <PartnersSection />
       <BlogSection />
