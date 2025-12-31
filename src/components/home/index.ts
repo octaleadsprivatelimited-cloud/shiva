@@ -6,3 +6,5 @@ export { TestimonialsSection } from "./TestimonialsSection";
 export { AboutSection } from "./AboutSection";
 export { PartnersSection } from "./PartnersSection";
 export { BlogSection } from "./BlogSection";
+export { VideoSection } from "./VideoSection";
+export { GallerySection } from "./GallerySection";
