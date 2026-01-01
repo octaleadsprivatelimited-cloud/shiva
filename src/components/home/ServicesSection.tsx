@@ -52,12 +52,12 @@ export const ServicesSection = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Services</span>
+          <span className="text-accent font-semibold text-sm uppercase tracking-wider">What We Offer</span>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mt-2 mb-4">
-            Helping Farmers Unlock Value with Expert Solutions
+            Cultivating Success, One Farm at a Time
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From crop planning to market access, we provide end-to-end agricultural services to ensure your farming success.
+            Empowering farmers with cutting-edge solutions — from soil to harvest, we're your trusted partner in agricultural excellence.
           </p>
         </div>
 
