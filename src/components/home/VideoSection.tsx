@@ -5,25 +5,25 @@ import { Button } from "@/components/ui/button";
 
 const videos = [
   {
-    id: "Gs3vwNvHPFA",
+    id: "E34AVct0mew",
     title: "Cotton Pest Management - Complete Guide",
     views: "125K views",
     duration: "15:32",
   },
   {
-    id: "kJ7v8T4xKxY",
+    id: "E34AVct0mew",
     title: "Soil Testing for Better Crop Yields",
     views: "89K views",
     duration: "12:45",
   },
   {
-    id: "C8Wu3Bps9ic",
+    id: "E34AVct0mew",
     title: "Organic Farming Success Stories",
     views: "156K views",
     duration: "18:20",
   },
   {
-    id: "7gVEMvdgJXM",
+    id: "E34AVct0mew",
     title: "Paddy Cultivation Best Practices",
     views: "98K views",
     duration: "22:10",
@@ -31,7 +31,7 @@ const videos = [
 ];
 
 const featuredVideo = {
-  id: "Gs3vwNvHPFA",
+  id: "E34AVct0mew",
   title: "Introduction to Shiva Agri Clinic Services",
   description: "Learn about our comprehensive agricultural solutions",
 };

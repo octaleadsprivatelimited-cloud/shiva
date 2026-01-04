@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Youtube, Clock, Eye, X } from "lucide-react";
 
 const featuredVideo = {
-  id: "Gs3vwNvHPFA",
+  id: "E34AVct0mew",
   title: "Complete Guide to Organic Farming - Start to Finish",
   description: "Learn everything about organic farming from soil preparation to harvesting. A comprehensive guide for beginners and experienced farmers alike.",
   views: "125K",
@@ -12,14 +12,14 @@ const featuredVideo = {
 };
 
 const videos = [
-  { id: "kJ7v8T4xKxY", title: "Pest Control Without Chemicals", category: "Pest Management", views: "89K", duration: "18:45" },
-  { id: "C8Wu3Bps9ic", title: "Soil Testing at Home", category: "Soil Health", views: "56K", duration: "12:30" },
-  { id: "7gVEMvdgJXM", title: "Maximizing Rice Yield", category: "Crop Advisory", views: "112K", duration: "22:15" },
-  { id: "Gs3vwNvHPFA", title: "Drip Irrigation Setup", category: "Irrigation", views: "78K", duration: "15:20" },
-  { id: "kJ7v8T4xKxY", title: "Composting Masterclass", category: "Organic Farming", views: "45K", duration: "28:00" },
-  { id: "C8Wu3Bps9ic", title: "Cotton Farming Tips", category: "Crop Advisory", views: "67K", duration: "20:10" },
-  { id: "7gVEMvdgJXM", title: "Natural Fertilizers Guide", category: "Organic Farming", views: "93K", duration: "16:45" },
-  { id: "Gs3vwNvHPFA", title: "Monsoon Preparation Tips", category: "Seasonal", views: "41K", duration: "14:30" },
+  { id: "E34AVct0mew", title: "Pest Control Without Chemicals", category: "Pest Management", views: "89K", duration: "18:45" },
+  { id: "E34AVct0mew", title: "Soil Testing at Home", category: "Soil Health", views: "56K", duration: "12:30" },
+  { id: "E34AVct0mew", title: "Maximizing Rice Yield", category: "Crop Advisory", views: "112K", duration: "22:15" },
+  { id: "E34AVct0mew", title: "Drip Irrigation Setup", category: "Irrigation", views: "78K", duration: "15:20" },
+  { id: "E34AVct0mew", title: "Composting Masterclass", category: "Organic Farming", views: "45K", duration: "28:00" },
+  { id: "E34AVct0mew", title: "Cotton Farming Tips", category: "Crop Advisory", views: "67K", duration: "20:10" },
+  { id: "E34AVct0mew", title: "Natural Fertilizers Guide", category: "Organic Farming", views: "93K", duration: "16:45" },
+  { id: "E34AVct0mew", title: "Monsoon Preparation Tips", category: "Seasonal", views: "41K", duration: "14:30" },
 ];
 
 const Videos = () => {
