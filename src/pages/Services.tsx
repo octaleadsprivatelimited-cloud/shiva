@@ -1,11 +1,10 @@
 import { Layout } from "@/components/layout";
 import { Link } from "react-router-dom";
-import { ArrowRight, Leaf, Bug, FlaskConical, Sprout } from "lucide-react";
+import { ArrowRight, Leaf, Bug, Sprout } from "lucide-react";
 
 const services = [
   { icon: Leaf, title: "Crop Advisory", desc: "Expert guidance on crop selection and cultivation.", href: "/services/crop-advisory" },
   { icon: Bug, title: "Pest Management", desc: "Integrated pest management solutions.", href: "/services/pest-management" },
-  { icon: FlaskConical, title: "Soil Testing", desc: "Advanced soil analysis and recommendations.", href: "/services/soil-testing" },
   { icon: Sprout, title: "Organic Farming", desc: "Guidance on organic practices and certification.", href: "/services/organic-farming" },
 ];
 

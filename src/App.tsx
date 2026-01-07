@@ -21,7 +21,7 @@ import Terms from "./pages/Terms";
 import Sitemap from "./pages/Sitemap";
 import CropAdvisory from "./pages/services/CropAdvisory";
 import PestManagement from "./pages/services/PestManagement";
-import SoilTesting from "./pages/services/SoilTesting";
+
 import OrganicFarming from "./pages/services/OrganicFarming";
 import NotFound from "./pages/NotFound";
 
@@ -40,7 +40,7 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/services/crop-advisory" element={<CropAdvisory />} />
           <Route path="/services/pest-management" element={<PestManagement />} />
-          <Route path="/services/soil-testing" element={<SoilTesting />} />
+          
           <Route path="/services/organic-farming" element={<OrganicFarming />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/*" element={<Products />} />
