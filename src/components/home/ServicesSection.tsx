@@ -42,38 +42,38 @@ const services = [
 
 export const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 bg-background scroll-mt-20">
+    <section id="services" className="py-12 md:py-20 bg-background scroll-mt-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">What We Offer</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mt-2 mb-4">
+        <div className="text-center mb-8 md:mb-16">
+          <span className="text-accent font-semibold text-xs md:text-sm uppercase tracking-wider">What We Offer</span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mt-2 mb-3 md:mb-4">
             Cultivating Success, One Farm at a Time
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto">
             Empowering farmers with cutting-edge solutions — from soil to harvest, we're your trusted partner in agricultural excellence.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => (
             <Link
               key={service.title}
               to={service.href}
               className={cn(
-                "group p-6 bg-card rounded-2xl border border-border hover:border-accent hover:shadow-lg transition-all duration-300 animate-slide-up",
+                "group p-4 md:p-6 bg-card rounded-xl md:rounded-2xl border border-border hover:border-accent hover:shadow-lg transition-all duration-300 animate-slide-up",
               )}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className={cn("w-14 h-14 rounded-xl flex items-center justify-center mb-4", service.color)}>
-                <service.icon className="w-7 h-7" />
+              <div className={cn("w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl flex items-center justify-center mb-3 md:mb-4", service.color)}>
+                <service.icon className="w-5 h-5 md:w-7 md:h-7" />
               </div>
-              <h3 className="text-xl font-heading font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+              <h3 className="text-lg md:text-xl font-heading font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground mb-4">{service.description}</p>
-              <div className="flex items-center text-accent font-medium text-sm group-hover:gap-2 transition-all">
+              <p className="text-muted-foreground text-sm md:text-base mb-3 md:mb-4">{service.description}</p>
+              <div className="flex items-center text-accent font-medium text-xs md:text-sm group-hover:gap-2 transition-all">
                 Learn More
-                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
           ))}
