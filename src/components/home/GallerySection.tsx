@@ -74,28 +74,28 @@ export const GallerySection = () => {
   };
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+        <div className="text-center mb-8 sm:mb-12">
+          <span className="text-accent font-semibold text-xs sm:text-sm uppercase tracking-wider">
             Our Work
           </span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mt-2 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground mt-2 mb-3 sm:mb-4">
             Success Stories & Farm Visits
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mx-auto px-2">
             Explore our journey of transforming farms across India through expert guidance and modern agricultural practices.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 px-2">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                "px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all",
                 selectedCategory === cat
                   ? "bg-accent text-accent-foreground"
                   : "bg-muted text-muted-foreground hover:bg-accent/10 hover:text-accent"
@@ -107,11 +107,11 @@ export const GallerySection = () => {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer"
+              className="group relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
               onClick={() => openLightbox(index)}
             >
               <img
@@ -119,17 +119,17 @@ export const GallerySection = () => {
                 alt={item.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center">
-                  <ZoomIn className="w-6 h-6 text-accent-foreground" />
+                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-accent flex items-center justify-center">
+                  <ZoomIn className="w-4 h-4 sm:w-6 sm:h-6 text-accent-foreground" />
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-xs bg-accent/80 text-accent-foreground px-2 py-1 rounded">
+              <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 translate-y-0 sm:translate-y-full sm:group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-[10px] sm:text-xs bg-accent/80 text-accent-foreground px-1.5 py-0.5 sm:px-2 sm:py-1 rounded">
                   {item.category}
                 </span>
-                <h3 className="text-primary-foreground font-semibold mt-2">
+                <h3 className="text-primary-foreground font-semibold text-xs sm:text-base mt-1 sm:mt-2 line-clamp-1">
                   {item.title}
                 </h3>
               </div>
