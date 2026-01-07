@@ -76,17 +76,17 @@ export const VideoSection = () => {
         </div>
       )}
 
-      <section id="videos" className="py-20 bg-gradient-navy text-primary-foreground scroll-mt-20">
+      <section id="videos" className="py-12 md:py-20 bg-gradient-navy text-primary-foreground scroll-mt-20">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div>
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12">
+            <div className="text-center md:text-left">
+              <span className="text-accent font-semibold text-xs md:text-sm uppercase tracking-wider">
                 Video Tutorials
               </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mt-2">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mt-2">
                 Learn from Our YouTube Channel
               </h2>
-              <p className="text-primary-foreground/70 mt-2 max-w-xl">
+              <p className="text-primary-foreground/70 mt-2 max-w-xl text-sm md:text-base">
                 Subscribe to Shiva Agri Clinic on YouTube for free agricultural education, tips, and success stories.
               </p>
             </div>
@@ -94,20 +94,20 @@ export const VideoSection = () => {
               href="https://www.youtube.com/@ShivaAgriClinic"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 md:mt-0"
+              className="mt-4 md:mt-0 flex justify-center"
             >
-              <Button variant="hero" size="lg">
-                <Youtube className="w-5 h-5 mr-2" />
+              <Button variant="hero" size="default" className="md:text-base">
+                <Youtube className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Subscribe Now
-                <ExternalLink className="w-4 h-4 ml-2" />
+                <ExternalLink className="w-3 h-3 md:w-4 md:h-4 ml-2" />
               </Button>
             </a>
           </div>
 
           {/* Featured Video */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-12">
             <div 
-              className="relative aspect-video rounded-2xl overflow-hidden bg-primary-foreground/10 group cursor-pointer"
+              className="relative aspect-video rounded-xl md:rounded-2xl overflow-hidden bg-primary-foreground/10 group cursor-pointer"
               onClick={() => handlePlayVideo(featuredVideo.id)}
             >
               <img
@@ -120,53 +120,53 @@ export const VideoSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
-                  <Play className="w-8 h-8 text-accent-foreground fill-current ml-1" />
+                <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-accent flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
+                  <Play className="w-6 h-6 md:w-8 md:h-8 text-accent-foreground fill-current ml-1" />
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="text-xs bg-accent text-accent-foreground px-2 py-1 rounded font-semibold">
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                <span className="text-[10px] md:text-xs bg-accent text-accent-foreground px-2 py-1 rounded font-semibold">
                   Featured
                 </span>
-                <h3 className="text-xl font-heading font-semibold mt-2">
+                <h3 className="text-base md:text-xl font-heading font-semibold mt-2">
                   {featuredVideo.title}
                 </h3>
-                <p className="text-primary-foreground/70 text-sm mt-1">
+                <p className="text-primary-foreground/70 text-xs md:text-sm mt-1">
                   {featuredVideo.description}
                 </p>
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {videos.map((video) => (
                 <div
                   key={video.id}
                   onClick={() => handlePlayVideo(video.id)}
-                  className="flex gap-4 p-3 rounded-xl bg-primary-foreground/5 border border-primary-foreground/10 hover:bg-primary-foreground/10 transition-colors group cursor-pointer"
+                  className="flex gap-3 md:gap-4 p-2 md:p-3 rounded-lg md:rounded-xl bg-primary-foreground/5 border border-primary-foreground/10 hover:bg-primary-foreground/10 transition-colors group cursor-pointer"
                 >
-                  <div className="relative w-40 aspect-video rounded-lg overflow-hidden bg-primary-foreground/10 flex-shrink-0">
+                  <div className="relative w-28 md:w-40 aspect-video rounded-md md:rounded-lg overflow-hidden bg-primary-foreground/10 flex-shrink-0">
                     <img
                       src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                       alt={video.title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full bg-accent/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-4 h-4 text-accent-foreground fill-current ml-0.5" />
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Play className="w-3 h-3 md:w-4 md:h-4 text-accent-foreground fill-current ml-0.5" />
                       </div>
                     </div>
-                    <span className="absolute bottom-1 right-1 text-xs bg-primary/80 px-1.5 py-0.5 rounded">
+                    <span className="absolute bottom-1 right-1 text-[10px] md:text-xs bg-primary/80 px-1 md:px-1.5 py-0.5 rounded">
                       {video.duration}
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-sm line-clamp-2 group-hover:text-accent transition-colors">
+                    <h4 className="font-semibold text-xs md:text-sm line-clamp-2 group-hover:text-accent transition-colors">
                       {video.title}
                     </h4>
-                    <p className="text-primary-foreground/60 text-xs mt-1">
+                    <p className="text-primary-foreground/60 text-[10px] md:text-xs mt-1">
                       Shiva Agri Clinic
                     </p>
-                    <p className="text-primary-foreground/60 text-xs">
+                    <p className="text-primary-foreground/60 text-[10px] md:text-xs">
                       {video.views}
                     </p>
                   </div>
@@ -176,7 +176,7 @@ export const VideoSection = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 bg-primary-foreground/5 rounded-2xl border border-primary-foreground/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 p-4 md:p-6 bg-primary-foreground/5 rounded-xl md:rounded-2xl border border-primary-foreground/10">
             {[
               { label: "Subscribers", value: "50K+" },
               { label: "Videos", value: "200+" },
@@ -184,18 +184,18 @@ export const VideoSection = () => {
               { label: "Languages", value: "Hindi & Telugu" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-2xl md:text-3xl font-heading font-bold text-accent">
+                <div className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-accent">
                   {stat.value}
                 </div>
-                <p className="text-primary-foreground/70 text-sm">{stat.label}</p>
+                <p className="text-primary-foreground/70 text-xs md:text-sm">{stat.label}</p>
               </div>
             ))}
           </div>
 
           {/* View All Link */}
-          <div className="text-center mt-8">
+          <div className="text-center mt-6 md:mt-8">
             <Link to="/videos">
-              <Button variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+              <Button variant="outline" size="sm" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 md:text-sm">
                 View All Videos
               </Button>
             </Link>
