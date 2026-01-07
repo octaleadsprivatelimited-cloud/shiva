@@ -11,7 +11,6 @@ const navItems = [
     dropdown: [
       { label: "Crop Advisory", href: "/services/crop-advisory" },
       { label: "Pest Management", href: "/services/pest-management" },
-      { label: "Soil Testing", href: "/services/soil-testing" },
       { label: "Organic Farming", href: "/services/organic-farming" },
     ],
   },

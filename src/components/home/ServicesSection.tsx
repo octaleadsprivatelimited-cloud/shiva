@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Leaf, Bug, FlaskConical, Sprout, Wheat, Tractor } from "lucide-react";
+import { ArrowRight, Leaf, Bug, Sprout, Wheat, Tractor } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const services = [
@@ -16,13 +16,6 @@ const services = [
     description: "Comprehensive pest and disease control solutions using integrated pest management (IPM) techniques for sustainable farming.",
     href: "/services/pest-management",
     color: "bg-lime-light/20 text-lime-dark",
-  },
-  {
-    icon: FlaskConical,
-    title: "Soil Testing",
-    description: "Advanced soil analysis to determine nutrient content, pH levels, and recommendations for optimal fertilizer application.",
-    href: "/services/soil-testing",
-    color: "bg-gold/20 text-gold",
   },
   {
     icon: Sprout,

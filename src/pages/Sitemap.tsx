@@ -18,7 +18,6 @@ const sitemapSections = [
       { label: "All Services", href: "/services" },
       { label: "Crop Advisory", href: "/services/crop-advisory" },
       { label: "Pest Management", href: "/services/pest-management" },
-      { label: "Soil Testing", href: "/services/soil-testing" },
       { label: "Organic Farming", href: "/services/organic-farming" },
     ],
   },
