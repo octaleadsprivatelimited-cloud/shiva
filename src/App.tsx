@@ -21,8 +21,14 @@ import Terms from "./pages/Terms";
 import Sitemap from "./pages/Sitemap";
 import CropAdvisory from "./pages/services/CropAdvisory";
 import PestManagement from "./pages/services/PestManagement";
-
 import OrganicFarming from "./pages/services/OrganicFarming";
+import Seeds from "./pages/products/Seeds";
+import Fertilizers from "./pages/products/Fertilizers";
+import Equipment from "./pages/products/Equipment";
+import SmartFarming from "./pages/solutions/SmartFarming";
+import SustainableAgriculture from "./pages/solutions/SustainableAgriculture";
+import CropHealth from "./pages/solutions/CropHealth";
+import SupplyChain from "./pages/solutions/SupplyChain";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,12 +46,16 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/services/crop-advisory" element={<CropAdvisory />} />
           <Route path="/services/pest-management" element={<PestManagement />} />
-          
           <Route path="/services/organic-farming" element={<OrganicFarming />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/*" element={<Products />} />
+          <Route path="/products/seeds" element={<Seeds />} />
+          <Route path="/products/fertilizers" element={<Fertilizers />} />
+          <Route path="/products/equipment" element={<Equipment />} />
           <Route path="/solutions" element={<Solutions />} />
-          <Route path="/solutions/*" element={<Solutions />} />
+          <Route path="/solutions/smart-farming" element={<SmartFarming />} />
+          <Route path="/solutions/sustainable-agriculture" element={<SustainableAgriculture />} />
+          <Route path="/solutions/crop-health" element={<CropHealth />} />
+          <Route path="/solutions/supply-chain" element={<SupplyChain />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/*" element={<Blog />} />
           <Route path="/gallery" element={<Gallery />} />
