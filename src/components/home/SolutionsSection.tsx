@@ -14,7 +14,7 @@ const features = [
 
 export const SolutionsSection = () => {
   return (
-    <section className="py-20 bg-gradient-navy text-primary-foreground overflow-hidden">
+    <section id="solutions" className="py-20 bg-gradient-navy text-primary-foreground overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}

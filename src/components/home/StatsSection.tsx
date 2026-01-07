@@ -109,7 +109,7 @@ const StatItem = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
 
 export const StatsSection = () => {
   return (
-    <section className="relative bg-primary py-12 sm:py-16 md:py-20 overflow-hidden">
+    <section id="stats" className="relative bg-primary py-12 sm:py-16 md:py-20 overflow-hidden scroll-mt-20">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 -left-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-accent/10 rounded-full blur-3xl animate-pulse" />

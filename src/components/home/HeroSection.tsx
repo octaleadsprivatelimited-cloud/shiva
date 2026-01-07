@@ -74,7 +74,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen min-h-[700px] overflow-hidden">
+    <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden">
       {/* Background Images */}
       {slides.map((slide, index) => (
         <div

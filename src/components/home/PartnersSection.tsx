@@ -13,7 +13,7 @@ const partners = [
 
 export const PartnersSection = () => {
   return (
-    <section className="py-16 bg-background border-y border-border overflow-hidden">
+    <section id="partners" className="py-16 bg-background border-y border-border overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4 mb-8">
         <h3 className="text-center text-xl font-heading font-semibold text-muted-foreground">
           Trusted By Leading Agricultural Organizations

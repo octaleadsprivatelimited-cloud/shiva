@@ -46,7 +46,7 @@ export const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-20 bg-muted">
+    <section id="testimonials" className="py-20 bg-muted scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">

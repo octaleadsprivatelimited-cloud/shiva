@@ -74,7 +74,7 @@ export const GallerySection = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-background">
+    <section id="gallery" className="py-12 sm:py-16 md:py-20 bg-background scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 sm:mb-12">
           <span className="text-accent font-semibold text-xs sm:text-sm uppercase tracking-wider">

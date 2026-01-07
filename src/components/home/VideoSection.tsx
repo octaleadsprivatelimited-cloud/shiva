@@ -76,7 +76,7 @@ export const VideoSection = () => {
         </div>
       )}
 
-      <section className="py-20 bg-gradient-navy text-primary-foreground">
+      <section id="videos" className="py-20 bg-gradient-navy text-primary-foreground scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>

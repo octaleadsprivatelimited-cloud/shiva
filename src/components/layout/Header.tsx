@@ -3,11 +3,20 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Search, Phone, Youtube, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
-const navItems = [
+type NavItem = {
+  label: string;
+  href: string;
+  scrollTo?: string;
+  dropdown?: { label: string; href: string; scrollTo?: string }[];
+};
+
+const navItems: NavItem[] = [
   {
     label: "Services",
     href: "/services",
+    scrollTo: "services",
     dropdown: [
       { label: "Crop Advisory", href: "/services/crop-advisory" },
       { label: "Pest Management", href: "/services/pest-management" },
@@ -27,6 +36,7 @@ const navItems = [
   {
     label: "Solutions",
     href: "/solutions",
+    scrollTo: "solutions",
     dropdown: [
       { label: "Smart Farming", href: "/solutions/smart-farming" },
       { label: "Sustainable Agriculture", href: "/solutions/sustainable-agriculture" },
@@ -38,17 +48,18 @@ const navItems = [
     label: "Resources",
     href: "/resources",
     dropdown: [
-      { label: "Blog", href: "/blog" },
+      { label: "Blog", href: "/blog", scrollTo: "blog" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Knowledge Base", href: "/knowledge-base" },
-      { label: "Videos", href: "/videos" },
+      { label: "Videos", href: "/videos", scrollTo: "videos" },
     ],
   },
   {
     label: "Company",
     href: "/about",
+    scrollTo: "about",
     dropdown: [
-      { label: "About Us", href: "/about" },
+      { label: "About Us", href: "/about", scrollTo: "about" },
       { label: "Our Team", href: "/team" },
       { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
@@ -61,6 +72,7 @@ export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const { scrollToSection } = useSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,6 +86,14 @@ export const Header = () => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
   }, [location]);
+
+  const handleNavClick = (e: React.MouseEvent, item: { href: string; scrollTo?: string }) => {
+    // Only use smooth scroll on homepage for items with scrollTo
+    if (item.scrollTo && location.pathname === "/") {
+      e.preventDefault();
+      scrollToSection(item.scrollTo);
+    }
+  };
 
   return (
     <header
@@ -111,6 +131,7 @@ export const Header = () => {
               >
                 <Link
                   to={item.href}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={cn(
                     "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg",
                     isScrolled
@@ -139,6 +160,7 @@ export const Header = () => {
                       <Link
                         key={subItem.label}
                         to={subItem.href}
+                        onClick={(e) => handleNavClick(e, subItem)}
                         className="block px-4 py-2.5 text-sm text-foreground hover:text-accent hover:bg-muted transition-colors"
                       >
                         {subItem.label}
@@ -238,6 +260,7 @@ export const Header = () => {
                       <Link
                         key={subItem.label}
                         to={subItem.href}
+                        onClick={(e) => handleNavClick(e, subItem)}
                         className="block py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
                       >
                         {subItem.label}
