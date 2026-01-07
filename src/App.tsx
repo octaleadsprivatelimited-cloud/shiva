@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -24,6 +25,7 @@ import PestManagement from "./pages/services/PestManagement";
 import OrganicFarming from "./pages/services/OrganicFarming";
 import Seeds from "./pages/products/Seeds";
 import Fertilizers from "./pages/products/Fertilizers";
+import Pesticides from "./pages/products/Pesticides";
 import Equipment from "./pages/products/Equipment";
 import SmartFarming from "./pages/solutions/SmartFarming";
 import SustainableAgriculture from "./pages/solutions/SustainableAgriculture";
@@ -39,6 +41,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
@@ -50,6 +53,7 @@ const App = () => (
           <Route path="/products" element={<Products />} />
           <Route path="/products/seeds" element={<Seeds />} />
           <Route path="/products/fertilizers" element={<Fertilizers />} />
+          <Route path="/products/pesticides" element={<Pesticides />} />
           <Route path="/products/equipment" element={<Equipment />} />
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/solutions/smart-farming" element={<SmartFarming />} />

@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import CookieConsent from "@/components/CookieConsent";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <Footer />
       <WhatsAppButton />
       <BackToTopButton />
+      <CookieConsent />
     </div>
   );
 };
