@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Youtube, Instagram, ArrowRight, Users, Target, Heart, Award } from "lucide-react";
-import farmerConsultation from "@/assets/farmer-consultation.jpg";
+import founderImage from "@/assets/founder.jpg";
 
 const About = () => {
   return (
@@ -22,7 +22,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <img src={farmerConsultation} alt="Shiva Kumar consulting farmers" className="rounded-2xl shadow-lg" />
+              <img src={founderImage} alt="Shiva Kumar - Founder" className="rounded-2xl shadow-lg" />
             </div>
             <div>
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Story</span>

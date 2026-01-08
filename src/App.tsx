@@ -31,6 +31,7 @@ import SmartFarming from "./pages/solutions/SmartFarming";
 import SustainableAgriculture from "./pages/solutions/SustainableAgriculture";
 import CropHealth from "./pages/solutions/CropHealth";
 import SupplyChain from "./pages/solutions/SupplyChain";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -61,7 +62,7 @@ const App = () => (
           <Route path="/solutions/crop-health" element={<CropHealth />} />
           <Route path="/solutions/supply-chain" element={<SupplyChain />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/*" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/resources" element={<Blog />} />
           <Route path="/team" element={<Team />} />

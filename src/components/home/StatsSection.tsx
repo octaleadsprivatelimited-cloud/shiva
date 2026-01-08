@@ -86,8 +86,8 @@ const StatItem = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
       {/* Counter */}
       <div className="relative">
         <div className={cn(
-          "text-xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-accent mb-1 sm:mb-2",
-          "transition-all duration-300 group-hover:scale-110"
+          "text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-accent mb-1 sm:mb-2",
+          "transition-all duration-300 group-hover:scale-110 break-words"
         )}>
           <span className="tabular-nums">{count.toLocaleString()}</span>
           <span className="text-accent/80">{stat.suffix}</span>

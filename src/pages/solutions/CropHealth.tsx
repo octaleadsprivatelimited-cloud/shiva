@@ -74,7 +74,7 @@ const CropHealth = () => (
               </Button>
             </Link>
             <a href="https://wa.me/917013570447" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+              <Button variant="whiteOutline" size="lg">
                 Send Crop Photo
               </Button>
             </a>

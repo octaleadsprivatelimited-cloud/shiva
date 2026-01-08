@@ -1,36 +1,10 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar, User } from "lucide-react";
+import { ArrowRight, Calendar, User, Clock } from "lucide-react";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
+import { blogPosts } from "@/data/blogPosts";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Top 10 Pest Management Strategies for Monsoon Season",
-    excerpt: "Learn effective pest control techniques to protect your crops during the monsoon season with our expert guide.",
-    category: "Pest Management",
-    date: "Dec 28, 2024",
-    author: "Shiva Kumar",
-    href: "/blog/pest-management-monsoon",
-  },
-  {
-    id: 2,
-    title: "Complete Guide to Organic Farming Certification in India",
-    excerpt: "Everything you need to know about obtaining organic certification for your farm and accessing premium markets.",
-    category: "Organic Farming",
-    date: "Dec 25, 2024",
-    author: "Shiva Kumar",
-    href: "/blog/organic-certification-guide",
-  },
-  {
-    id: 3,
-    title: "Smart Irrigation Techniques to Save Water and Boost Yields",
-    excerpt: "Discover modern irrigation methods that can help you conserve water while maximizing crop productivity.",
-    category: "Smart Farming",
-    date: "Dec 20, 2024",
-    author: "Shiva Kumar",
-    href: "/blog/smart-irrigation",
-  },
-];
+// Get first 3 posts for homepage
+const homepagePosts = blogPosts.slice(0, 3);
 
 export const BlogSection = () => {
   return (
@@ -57,14 +31,22 @@ export const BlogSection = () => {
         </ScrollAnimation>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {blogPosts.map((post, index) => (
+          {homepagePosts.map((post, index) => (
             <ScrollAnimation key={post.id} animation="fade-up" delay={index * 100}>
               <Link
-                to={post.href}
+                to={`/blog/${post.slug}`}
                 className="group bg-card rounded-xl md:rounded-2xl overflow-hidden border border-border hover:border-accent hover:shadow-lg transition-all duration-300 block h-full"
               >
-                <div className="aspect-video bg-primary/10 flex items-center justify-center">
-                  <span className="text-3xl md:text-4xl">📚</span>
+                <div className="aspect-video overflow-hidden bg-muted">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop&q=80`;
+                    }}
+                  />
                 </div>
                 <div className="p-4 md:p-6">
                   <span className="inline-block px-2 md:px-3 py-1 bg-accent/10 text-accent text-[10px] md:text-xs font-semibold rounded-full mb-3 md:mb-4">
@@ -84,6 +66,10 @@ export const BlogSection = () => {
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
                       {post.date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {post.readTime}
                     </span>
                   </div>
                 </div>

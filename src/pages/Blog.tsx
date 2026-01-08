@@ -1,15 +1,7 @@
 import { Layout } from "@/components/layout";
 import { Link } from "react-router-dom";
-import { Calendar, User, ArrowRight } from "lucide-react";
-
-const posts = [
-  { id: 1, title: "Top 10 Pest Management Strategies", category: "Pest Management", date: "Dec 28, 2024", author: "Shiva Kumar" },
-  { id: 2, title: "Complete Guide to Organic Farming", category: "Organic Farming", date: "Dec 25, 2024", author: "Shiva Kumar" },
-  { id: 3, title: "Smart Irrigation Techniques", category: "Smart Farming", date: "Dec 20, 2024", author: "Shiva Kumar" },
-  { id: 4, title: "Soil Health Management Tips", category: "Soil Testing", date: "Dec 15, 2024", author: "Shiva Kumar" },
-  { id: 5, title: "Monsoon Crop Planning Guide", category: "Crop Advisory", date: "Dec 10, 2024", author: "Shiva Kumar" },
-  { id: 6, title: "Maximizing Yield with Technology", category: "Smart Farming", date: "Dec 5, 2024", author: "Shiva Kumar" },
-];
+import { Calendar, User, Clock } from "lucide-react";
+import { blogPosts } from "@/data/blogPosts";
 
 const Blog = () => (
   <Layout>
@@ -22,18 +14,49 @@ const Blog = () => (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((p) => (
-            <article key={p.id} className="bg-card rounded-2xl border border-border overflow-hidden hover:border-accent transition-all group">
-              <div className="aspect-video bg-muted flex items-center justify-center text-4xl">📚</div>
+          {blogPosts.map((post) => (
+            <Link
+              key={post.id}
+              to={`/blog/${post.slug}`}
+              className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-accent hover:shadow-lg transition-all block h-full"
+            >
+              <div className="aspect-video overflow-hidden bg-muted">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = `https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop&q=80`;
+                  }}
+                />
+              </div>
               <div className="p-6">
-                <span className="text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full">{p.category}</span>
-                <h3 className="text-lg font-heading font-semibold mt-3 mb-2 group-hover:text-accent transition-colors">{p.title}</h3>
+                <span className="text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full">
+                  {post.category}
+                </span>
+                <h3 className="text-lg font-heading font-semibold mt-3 mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  {post.excerpt}
+                </p>
                 <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><User className="w-3 h-3" />{p.author}</span>
-                  <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{p.date}</span>
+                  <span className="flex items-center gap-1">
+                    <User className="w-3 h-3" />
+                    {post.author}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {post.date}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    {post.readTime}
+                  </span>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
