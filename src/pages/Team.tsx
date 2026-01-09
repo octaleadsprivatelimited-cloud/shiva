@@ -1,5 +1,7 @@
 import { Layout } from "@/components/layout";
 import { Youtube, Instagram, Linkedin } from "lucide-react";
+import heroImage from "@/assets/farmer-consultation.jpg";
+import founderImage from "@/assets/founder.jpg";
 
 const teamMembers = [
   {
@@ -46,10 +48,15 @@ const teamMembers = [
 
 const Team = () => (
   <Layout>
-    <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
-      <div className="container mx-auto px-4 text-center">
+    <section className="relative pt-32 pb-20 text-white overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+      <div className="container mx-auto px-4 text-center relative z-10">
         <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">Our Team</h1>
-        <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
+        <p className="text-xl text-white/90 max-w-2xl mx-auto">
           Meet the dedicated experts behind Shiva Agri Clinic's success in transforming Indian agriculture.
         </p>
       </div>
@@ -60,8 +67,12 @@ const Team = () => (
         {/* Founder Highlight */}
         <div className="mb-16 bg-card rounded-2xl border border-border overflow-hidden">
           <div className="grid lg:grid-cols-2">
-            <div className="bg-gradient-primary p-12 flex items-center justify-center">
-              <div className="text-9xl">{teamMembers[0].image}</div>
+            <div className="bg-gradient-primary flex items-center justify-center overflow-hidden">
+              <img 
+                src={founderImage} 
+                alt={teamMembers[0].name} 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-8 lg:p-12 flex flex-col justify-center">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-2">Founder</span>

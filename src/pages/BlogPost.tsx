@@ -33,11 +33,16 @@ const BlogPost = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="pt-28 md:pt-32 pb-12 md:pb-16 bg-gradient-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-28 md:pt-32 pb-12 md:pb-16 text-white overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${post.image})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+        <div className="container mx-auto px-4 relative z-10">
           <Link
             to="/blog"
-            className="inline-flex items-center text-primary-foreground/80 hover:text-primary-foreground mb-6 text-sm transition-colors"
+            className="inline-flex items-center text-white/80 hover:text-white mb-6 text-sm transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
@@ -50,7 +55,7 @@ const BlogPost = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 md:mb-6">
               {post.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm md:text-base text-primary-foreground/80">
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm md:text-base text-white/80">
               <span className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 {post.author}

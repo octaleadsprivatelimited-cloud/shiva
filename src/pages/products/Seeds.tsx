@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Check, Wheat, Leaf, Sun, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import heroImage from "@/assets/gallery/organic-farm.jpg";
 
 const seedCategories = [
   {
@@ -52,9 +53,14 @@ const whyChooseUs = [
 const Seeds = () => (
   <Layout>
     {/* Hero Section */}
-    <section className="pt-28 md:pt-32 pb-12 md:pb-20 bg-gradient-primary text-primary-foreground">
-      <div className="container mx-auto px-4">
-        <Link to="/products" className="inline-flex items-center text-primary-foreground/80 hover:text-primary-foreground mb-6 text-sm">
+    <section className="relative pt-28 md:pt-32 pb-12 md:pb-20 text-white overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+      <div className="container mx-auto px-4 relative z-10">
+        <Link to="/products" className="inline-flex items-center text-white/80 hover:text-white mb-6 text-sm">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Products
         </Link>
@@ -62,7 +68,7 @@ const Seeds = () => (
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 md:mb-6">
             Premium Quality Seeds
           </h1>
-          <p className="text-base md:text-xl text-primary-foreground/80 mb-6 md:mb-8">
+          <p className="text-base md:text-xl text-white/90 mb-6 md:mb-8">
             High-yielding, disease-resistant seed varieties for all major crops. Sourced from trusted suppliers and tested for quality assurance.
           </p>
           <Link to="/contact">

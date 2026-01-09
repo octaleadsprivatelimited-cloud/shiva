@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout";
 import { Link } from "react-router-dom";
 import { ArrowRight, Smartphone, Leaf, TrendingUp, Truck } from "lucide-react";
+import heroImage from "@/assets/smart-farming.jpg";
 
 const solutions = [
   { icon: Smartphone, title: "Smart Farming", desc: "Technology-driven farming solutions.", href: "/solutions/smart-farming" },
@@ -11,10 +12,15 @@ const solutions = [
 
 const Solutions = () => (
   <Layout>
-    <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
-      <div className="container mx-auto px-4 text-center">
+    <section className="relative pt-32 pb-20 text-white overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+      <div className="container mx-auto px-4 text-center relative z-10">
         <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">Our Solutions</h1>
-        <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">Innovative solutions for modern agriculture.</p>
+        <p className="text-xl text-white/90 max-w-2xl mx-auto">Innovative solutions for modern agriculture.</p>
       </div>
     </section>
     <section className="py-20 bg-background">

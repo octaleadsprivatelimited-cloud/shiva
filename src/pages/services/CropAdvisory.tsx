@@ -24,36 +24,36 @@ const CropAdvisory = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <Leaf className="w-4 h-4" />
-                Expert Service
-              </span>
-              <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-                Crop Advisory Services
-              </h1>
-              <p className="text-xl text-primary-foreground/80 mb-8">
-                Get expert guidance on crop selection, planting schedules, and cultivation practices tailored to your specific farm conditions and market demands.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button variant="hero" size="lg" asChild>
-                  <Link to="/contact">
-                    Get Free Consultation
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button variant="whiteOutline" size="lg" asChild>
-                  <a href="https://www.youtube.com/@ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
-                    Watch Videos
-                  </a>
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <img src={farmerConsultation} alt="Crop Advisory" className="rounded-2xl shadow-2xl" />
+      <section className="relative pt-32 pb-20 text-white overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${farmerConsultation})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <Leaf className="w-4 h-4" />
+              Expert Service
+            </span>
+            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              Crop Advisory Services
+            </h1>
+            <p className="text-xl text-white/90 mb-8">
+              Get expert guidance on crop selection, planting schedules, and cultivation practices tailored to your specific farm conditions and market demands.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button variant="hero" size="lg" asChild>
+                <Link to="/contact">
+                  Get Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
+              <Button variant="whiteOutline" size="lg" asChild>
+                <a href="https://www.youtube.com/@ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+                  Watch Videos
+                </a>
+              </Button>
             </div>
           </div>
         </div>

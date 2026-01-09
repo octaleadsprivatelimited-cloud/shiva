@@ -49,29 +49,29 @@ const marketAccess = [
 const SupplyChain = () => (
   <Layout>
     {/* Hero Section */}
-    <section className="pt-28 md:pt-32 pb-12 md:pb-20 bg-gradient-primary text-primary-foreground">
-      <div className="container mx-auto px-4">
-        <Link to="/solutions" className="inline-flex items-center text-primary-foreground/80 hover:text-primary-foreground mb-6 text-sm">
+    <section className="relative pt-28 md:pt-32 pb-12 md:pb-20 text-white overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${supplyChainImg})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+      <div className="container mx-auto px-4 relative z-10">
+        <Link to="/solutions" className="inline-flex items-center text-white/80 hover:text-white mb-6 text-sm">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Solutions
         </Link>
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 md:mb-6">
-              Farm to Market Solutions
-            </h1>
-            <p className="text-base md:text-xl text-primary-foreground/80 mb-6 md:mb-8">
-              Complete supply chain support from harvest to market. We help you get the best prices by connecting you directly with buyers and eliminating middlemen.
-            </p>
-            <Link to="/contact">
-              <Button variant="hero" size="lg">
-                Explore Market Access
-              </Button>
-            </Link>
-          </div>
-          <div className="rounded-2xl overflow-hidden">
-            <img src={supplyChainImg} alt="Supply Chain" className="w-full h-auto object-cover" />
-          </div>
+        <div className="max-w-3xl">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 md:mb-6">
+            Farm to Market Solutions
+          </h1>
+          <p className="text-base md:text-xl text-white/90 mb-6 md:mb-8">
+            Complete supply chain support from harvest to market. We help you get the best prices by connecting you directly with buyers and eliminating middlemen.
+          </p>
+          <Link to="/contact">
+            <Button variant="hero" size="lg">
+              Explore Market Access
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

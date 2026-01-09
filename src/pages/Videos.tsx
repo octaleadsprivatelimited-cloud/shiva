@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Play, Youtube, Clock, Eye, X } from "lucide-react";
+import heroImage from "@/assets/smart-farming.jpg";
 
 const featuredVideo = {
   id: "E34AVct0mew",
@@ -62,10 +63,15 @@ const Videos = () => {
         </div>
       )}
 
-      <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative pt-32 pb-20 text-white overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">Video Resources</h1>
-          <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
             Learn from our expert video tutorials on farming techniques, pest management, and more.
           </p>
           <Button variant="hero" size="lg" asChild>
