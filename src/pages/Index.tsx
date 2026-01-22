@@ -10,6 +10,7 @@ import {
   GallerySection,
   PartnersSection,
   BlogSection,
+  SocialMediaReachSection,
 } from "@/components/home";
 
 const Index = () => {
@@ -24,6 +25,7 @@ const Index = () => {
       <GallerySection />
       <TestimonialsSection />
       <PartnersSection />
+      <SocialMediaReachSection />
       <BlogSection />
     </Layout>
   );

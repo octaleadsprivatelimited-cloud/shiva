@@ -1,36 +1,31 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
-import farmerConsultation from "@/assets/farmer-consultation.jpg";
 
 const testimonials = [
   {
     id: 1,
-    quote: "Shiva Agri Clinic has transformed the way I farm. Their expert advice on pest management helped me reduce crop losses by 70%. I highly recommend their services to every farmer.",
-    name: "Ramesh Kumar",
-    role: "Cotton Farmer, Maharashtra",
-    image: farmerConsultation,
+    quote: "Shiva Agri Clinic played an important role in showcasing my flower farming practices to many fellow farmers. Through their efforts, my colour flower cultivation was shared as a practical example, creating awareness about the potential of flower crops. This exposure encouraged other farmers to explore flower farming as a profitable option. I am grateful to Shiva Agri Clinic for highlighting my work and helping spread knowledge that supports better farming practices and improved farmer income.",
+    name: "Ashok",
+    role: "Flower Farmer - Vikarabad District, Telangana",
   },
   {
     id: 2,
-    quote: "The soil testing service opened my eyes to what my land really needed. After following their fertilizer recommendations, my wheat yield increased by 40% in just one season.",
-    name: "Lakshmi Devi",
-    role: "Wheat Farmer, Punjab",
-    image: farmerConsultation,
+    quote: "Shiva Agri Clinic actively promoted my unique Gac fruit farming through video coverage, which gave my cultivation strong visibility among farmers and buyers. This promotion helped create awareness about the value and market potential of Gac fruit. With better marketing and increased interest, I was able to reach more people and improve my income. I appreciate Shiva Agri Clinic for supporting innovative crops and helping farmers benefit through knowledge, promotion, and market exposure.",
+    name: "Buchi Reddy",
+    role: "Fruit Farmer - Rangareddy District, Telangana",
   },
   {
     id: 3,
-    quote: "Shiva Kumar and his team provided excellent guidance on organic farming practices. Now my produce fetches premium prices in the market, and I am proud to grow chemical-free crops.",
-    name: "Venkatesh Reddy",
-    role: "Organic Farmer, Andhra Pradesh",
-    image: farmerConsultation,
+    quote: "Shiva Agri Clinic gave me the opportunity to share my palm oil farming experience through their videos. By showcasing practical techniques, daily farm practices, and tips for higher yield, I was able to reach many fellow farmers. It feels rewarding to know that my knowledge is helping others improve their farming, manage crops better, and increase their income. I sincerely thank Shiva Agri Clinic for creating this platform that connects farmers and spreads valuable, practical guidance.",
+    name: "Ajay Kumar Reddy",
+    role: "Palm oil Farmer - Mahabubnagar District, Telangana",
   },
   {
     id: 4,
-    quote: "The smart farming solutions recommended by Shiva Agri Clinic have modernized my entire operation. From weather alerts to pest predictions, everything is now at my fingertips.",
-    name: "Suresh Patil",
-    role: "Sugarcane Farmer, Karnataka",
-    image: farmerConsultation,
+    quote: "Growing dragon fruit was a new experience for me, and I wasn't sure how to reach the market. Shiva Agri Clinic guided me not only in cultivation techniques but also in connecting directly with customers. This helped me sell my fruits at better prices and build a loyal customer base. I am also happy that my plants and knowledge could reach other farmers, encouraging them to start dragon fruit cultivation. Thanks to Shiva Agri Clinic, my farming has become more profitable, organized, and inspiring for others.",
+    name: "Ramu",
+    role: "Dragon Fruit Farmer - Rangareddy District, Telangana",
   },
 ];
 
@@ -73,26 +68,17 @@ export const TestimonialsSection = () => {
                 )}
               >
                 {index === currentIndex && (
-                  <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center">
-                    <div className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden flex-shrink-0 border-2 md:border-4 border-accent/20">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="text-center md:text-left">
-                      <p className="text-sm md:text-lg lg:text-xl text-foreground mb-4 md:mb-6 italic leading-relaxed">
-                        "{testimonial.quote}"
+                  <div className="text-center">
+                    <p className="text-sm md:text-lg lg:text-xl text-foreground mb-4 md:mb-6 italic leading-relaxed">
+                      "{testimonial.quote}"
+                    </p>
+                    <div>
+                      <h4 className="font-heading font-semibold text-foreground text-sm md:text-base">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-muted-foreground text-xs md:text-sm">
+                        {testimonial.role}
                       </p>
-                      <div>
-                        <h4 className="font-heading font-semibold text-foreground text-sm md:text-base">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-muted-foreground text-xs md:text-sm">
-                          {testimonial.role}
-                        </p>
-                      </div>
                     </div>
                   </div>
                 )}

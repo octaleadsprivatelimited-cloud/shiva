@@ -8,3 +8,4 @@ export { PartnersSection } from "./PartnersSection";
 export { BlogSection } from "./BlogSection";
 export { VideoSection } from "./VideoSection";
 export { GallerySection } from "./GallerySection";
+export { SocialMediaReachSection } from "./SocialMediaReachSection";
