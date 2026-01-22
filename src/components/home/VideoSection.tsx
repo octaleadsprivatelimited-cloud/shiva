@@ -195,7 +195,7 @@ export const VideoSection = () => {
           {/* View All Link */}
           <div className="text-center mt-6 md:mt-8">
             <Link to="/videos">
-              <Button variant="outline" size="sm" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 md:text-sm">
+              <Button variant="whiteOutline" size="sm" className="md:text-sm">
                 View All Videos
               </Button>
             </Link>
