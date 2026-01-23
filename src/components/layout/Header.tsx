@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, Search, Phone, Youtube, Instagram } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Phone, Youtube, Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
@@ -200,7 +200,7 @@ export const Header = () => {
             
             <div className="flex items-center gap-2">
               <a
-                href="https://www.youtube.com/@ShivaAgriClinic"
+                href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -224,6 +224,45 @@ export const Header = () => {
                 )}
               >
                 <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/175Yh7bMWg/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "p-2 rounded-full transition-colors",
+                  isScrolled
+                    ? "text-foreground hover:bg-muted"
+                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                )}
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://x.com/ShivaAgriClinic"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "p-2 rounded-full transition-colors",
+                  isScrolled
+                    ? "text-foreground hover:bg-muted"
+                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                )}
+              >
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "p-2 rounded-full transition-colors",
+                  isScrolled
+                    ? "text-foreground hover:bg-muted"
+                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                )}
+              >
+                <Linkedin className="w-5 h-5" />
               </a>
             </div>
 
@@ -287,11 +326,20 @@ export const Header = () => {
             ))}
             <div className="mt-4 pt-4 border-t border-border flex flex-col gap-3">
               <div className="flex justify-center gap-4">
-                <a href="https://www.youtube.com/@ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+                <a href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" target="_blank" rel="noopener noreferrer">
                   <Youtube className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
                 </a>
                 <a href="https://www.instagram.com/shiva_agriclinic/" target="_blank" rel="noopener noreferrer">
                   <Instagram className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
+                </a>
+                <a href="https://www.facebook.com/share/175Yh7bMWg/" target="_blank" rel="noopener noreferrer">
+                  <Facebook className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
+                </a>
+                <a href="https://x.com/ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+                  <Twitter className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
+                </a>
+                <a href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
                 </a>
               </div>
               <Button variant="hero" size="lg" className="w-full" asChild>

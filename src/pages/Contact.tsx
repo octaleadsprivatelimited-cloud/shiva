@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Youtube, Instagram, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Youtube, Instagram, Facebook, Twitter, Linkedin, Send } from "lucide-react";
 import heroImage from "@/assets/hero-farmland.jpg";
 
 const Contact = () => {
@@ -77,12 +77,21 @@ const Contact = () => {
               </div>
 
               <h3 className="font-heading font-semibold mb-4">Follow Us</h3>
-              <div className="flex gap-4">
-                <a href="https://www.youtube.com/@ShivaAgriClinic" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:bg-accent transition-colors">
+              <div className="flex gap-4 flex-wrap">
+                <a href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:bg-accent transition-colors">
                   <Youtube className="w-5 h-5" />
                 </a>
                 <a href="https://www.instagram.com/shiva_agriclinic/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:bg-accent transition-colors">
                   <Instagram className="w-5 h-5" />
+                </a>
+                <a href="https://www.facebook.com/share/175Yh7bMWg/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:bg-accent transition-colors">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="https://x.com/ShivaAgriClinic" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:bg-accent transition-colors">
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:bg-accent transition-colors">
+                  <Linkedin className="w-5 h-5" />
                 </a>
               </div>
             </div>

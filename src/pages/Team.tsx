@@ -10,7 +10,7 @@ const teamMembers = [
     image: "👨‍🌾",
     bio: "With over 15 years of experience in agricultural science, Shiva Kumar founded Shiva Agri Clinic to bridge the gap between traditional farming and modern agricultural practices.",
     social: {
-      youtube: "https://www.youtube.com/@ShivaAgriClinic",
+      youtube: "https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt",
       instagram: "https://www.instagram.com/shiva_agriclinic/",
     },
   },

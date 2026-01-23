@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Youtube, Instagram, Phone, Mail, MapPin, ArrowRight, ChevronDown } from "lucide-react";
+import { Youtube, Instagram, Facebook, Twitter, Linkedin, Phone, Mail, MapPin, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -143,7 +143,7 @@ export const Footer = () => {
             </p>
             <div className="flex gap-3 sm:gap-4 mb-4 sm:mb-6">
               <a
-                href="https://www.youtube.com/@ShivaAgriClinic"
+                href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
@@ -157,6 +157,30 @@ export const Footer = () => {
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
               >
                 <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/175Yh7bMWg/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+              <a
+                href="https://x.com/ShivaAgriClinic"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             </div>
             <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-primary-foreground/70">

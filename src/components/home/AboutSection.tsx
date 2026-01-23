@@ -32,7 +32,7 @@ export const AboutSection = () => {
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <a
-                  href="https://www.youtube.com/@ShivaAgriClinic"
+                  href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center"
@@ -50,7 +50,7 @@ export const AboutSection = () => {
               <div className="aspect-video rounded-2xl overflow-hidden bg-primary shadow-2xl">
                 <div className="w-full h-full flex items-center justify-center">
                   <a
-                    href="https://www.youtube.com/@ShivaAgriClinic"
+                    href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-20 h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 transition-transform shadow-glow"

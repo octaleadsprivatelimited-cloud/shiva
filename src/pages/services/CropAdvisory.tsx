@@ -50,7 +50,7 @@ const CropAdvisory = () => {
                 </Link>
               </Button>
               <Button variant="whiteOutline" size="lg" asChild>
-                <a href="https://www.youtube.com/@ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+                <a href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" target="_blank" rel="noopener noreferrer">
                   Watch Videos
                 </a>
               </Button>

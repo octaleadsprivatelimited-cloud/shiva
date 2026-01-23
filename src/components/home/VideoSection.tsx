@@ -91,7 +91,7 @@ export const VideoSection = () => {
               </p>
             </div>
             <a
-              href="https://www.youtube.com/@ShivaAgriClinic"
+              href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 md:mt-0 flex justify-center"

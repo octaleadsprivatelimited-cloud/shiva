@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Youtube, Instagram, ArrowRight, Users, Target, Heart, Award } from "lucide-react";
+import { Youtube, Instagram, Facebook, Twitter, Linkedin, ArrowRight, Users, Target, Heart, Award } from "lucide-react";
 import founderImage from "@/assets/founder.jpg";
 import heroImage from "@/assets/hero-farmland.jpg";
 
@@ -39,12 +39,21 @@ const About = () => {
               <p className="text-muted-foreground mb-6">
                 Today, we serve over 50,000 farmers across India, providing comprehensive agricultural solutions from crop advisory to smart farming technologies.
               </p>
-              <div className="flex gap-4">
-                <a href="https://www.youtube.com/@ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+              <div className="flex gap-4 flex-wrap">
+                <a href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline"><Youtube className="mr-2 w-4 h-4" />YouTube</Button>
                 </a>
                 <a href="https://www.instagram.com/shiva_agriclinic/" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline"><Instagram className="mr-2 w-4 h-4" />Instagram</Button>
+                </a>
+                <a href="https://www.facebook.com/share/175Yh7bMWg/" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline"><Facebook className="mr-2 w-4 h-4" />Facebook</Button>
+                </a>
+                <a href="https://x.com/ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline"><Twitter className="mr-2 w-4 h-4" />Twitter</Button>
+                </a>
+                <a href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline"><Linkedin className="mr-2 w-4 h-4" />LinkedIn</Button>
                 </a>
               </div>
             </div>

@@ -75,7 +75,7 @@ const Videos = () => {
             Learn from our expert video tutorials on farming techniques, pest management, and more.
           </p>
           <Button variant="hero" size="lg" asChild>
-            <a href="https://www.youtube.com/@ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+            <a href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" target="_blank" rel="noopener noreferrer">
               <Youtube className="w-5 h-5 mr-2" />
               Subscribe on YouTube
             </a>
@@ -168,7 +168,7 @@ const Videos = () => {
             Subscribe to our YouTube channel for weekly farming tips and tutorials.
           </p>
           <a 
-            href="https://www.youtube.com/@ShivaAgriClinic" 
+            href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#FF0000] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#CC0000] transition-colors"
