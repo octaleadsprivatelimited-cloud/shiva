@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Youtube, Instagram, Facebook, Twitter, Linkedin, Phone, Mail, MapPin, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import footerBackground from "@/assets/footer-background.jpeg";
 
 const footerLinks = {
   services: [
@@ -107,7 +108,17 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="relative text-primary-foreground overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${footerBackground})` }}
+      />
+      {/* Dark Overlay for readability */}
+      <div className="absolute inset-0 bg-primary/95 backdrop-blur-[1px]" />
+      
+      {/* Content */}
+      <div className="relative z-10">
       {/* CTA Section */}
       <div className="border-b border-primary-foreground/10">
         <div className="container mx-auto px-4 py-10 sm:py-16">
@@ -252,6 +263,7 @@ export const Footer = () => {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </footer>
   );
