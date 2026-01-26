@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Youtube, Instagram, Facebook, Twitter, Linkedin, Send } from "lucide-react";
 import heroImage from "@/assets/hero-farmland.jpg";
+// To use a custom paddy crop image, import it here and replace heroImage in the backgroundImage style
+// Example: import paddyCropImage from "@/assets/paddy-crop.jpg";
 
 const Contact = () => {
   return (
@@ -26,21 +28,43 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="bg-card p-8 rounded-2xl shadow-lg border border-border">
-              <h2 className="text-2xl font-heading font-bold mb-6">Send us a Message</h2>
-              <form className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <Input placeholder="First Name *" />
-                  <Input placeholder="Last Name *" />
-                </div>
-                <Input type="email" placeholder="Email Address *" />
-                <Input type="tel" placeholder="Phone Number *" />
-                <Input placeholder="Subject" />
-                <Textarea placeholder="Your Message *" rows={5} />
-                <Button variant="hero" size="lg" className="w-full">
-                  <Send className="w-4 h-4 mr-2" /> Send Message
-                </Button>
-              </form>
+            <div className="relative p-8 rounded-2xl shadow-lg border border-border overflow-hidden">
+              {/* Background Image - Green Paddy Crop with Rice Grains */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ 
+                  backgroundImage: `url(${heroImage})`,
+                  filter: 'hue-rotate(80deg) saturate(2) brightness(0.85) contrast(1.1)',
+                  opacity: 0.25
+                }}
+              />
+              {/* Green tint overlay to enhance paddy field appearance */}
+              <div 
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.2) 100%)'
+                }}
+              />
+              {/* Overlay for better readability */}
+              <div className="absolute inset-0 bg-background/90 backdrop-blur-[2px]" />
+              
+              {/* Form Content */}
+              <div className="relative z-10">
+                <h2 className="text-2xl font-heading font-bold mb-6">Send us a Message</h2>
+                <form className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <Input placeholder="First Name *" className="bg-background/90 backdrop-blur-sm border-border/50" />
+                    <Input placeholder="Last Name *" className="bg-background/90 backdrop-blur-sm border-border/50" />
+                  </div>
+                  <Input type="email" placeholder="Email Address *" className="bg-background/90 backdrop-blur-sm border-border/50" />
+                  <Input type="tel" placeholder="Phone Number *" className="bg-background/90 backdrop-blur-sm border-border/50" />
+                  <Input placeholder="Subject" className="bg-background/90 backdrop-blur-sm border-border/50" />
+                  <Textarea placeholder="Your Message *" rows={5} className="bg-background/90 backdrop-blur-sm border-border/50" />
+                  <Button variant="hero" size="lg" className="w-full">
+                    <Send className="w-4 h-4 mr-2" /> Send Message
+                  </Button>
+                </form>
+              </div>
             </div>
 
             {/* Contact Info */}
