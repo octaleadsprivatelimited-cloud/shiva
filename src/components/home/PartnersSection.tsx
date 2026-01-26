@@ -31,12 +31,40 @@ export const PartnersSection = () => {
         </h3>
       </div>
       
-      {/* Marquee */}
-      <div className="relative overflow-hidden">
+      {/* Two-line Zig-zag Marquee */}
+      <div className="relative overflow-hidden space-y-4">
+        {/* First row - scrolls left */}
         <div className="flex animate-marquee">
           {[...partners, ...partners].map((partner, index) => (
             <div
-              key={index}
+              key={`row1-${index}`}
+              className="flex-shrink-0 px-6 md:px-8 py-4"
+            >
+              <div className="px-4 md:px-6 py-3 bg-muted rounded-lg border border-border flex items-center justify-center h-16 md:h-20 w-32 md:w-40">
+                <img
+                  src={partner.image}
+                  alt={partner.alt}
+                  className="max-h-full max-w-full object-contain"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = '<span class="text-muted-foreground text-xs">Partner Logo</span>';
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Second row - scrolls right (reverse) */}
+        <div className="flex animate-marquee-reverse">
+          {[...partners, ...partners].map((partner, index) => (
+            <div
+              key={`row2-${index}`}
               className="flex-shrink-0 px-6 md:px-8 py-4"
             >
               <div className="px-4 md:px-6 py-3 bg-muted rounded-lg border border-border flex items-center justify-center h-16 md:h-20 w-32 md:w-40">
