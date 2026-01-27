@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { Calendar, User, Clock } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
@@ -6,6 +7,11 @@ import heroImage from "@/assets/gallery/farm-visit-1.jpg";
 
 const Blog = () => (
   <Layout>
+    <SEO
+      title="Blog"
+      description="Latest agricultural insights, farming tips, and expert knowledge from Shiva Agri Clinic. Stay updated with crop management, pest control, organic farming, and smart farming technologies."
+      keywords="agricultural blog, farming tips, crop management blog, agricultural knowledge, farming insights India"
+    />
     <section className="relative pt-32 pb-20 text-white overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

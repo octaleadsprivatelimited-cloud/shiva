@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { ArrowRight, Wheat, Beaker, Cog } from "lucide-react";
 import heroImage from "@/assets/supply-chain.jpg";
@@ -11,6 +12,11 @@ const products = [
 
 const Products = () => (
   <Layout>
+    <SEO
+      title="Our Products"
+      description="Quality agricultural products from Shiva Agri Clinic: High-quality seeds, fertilizers, pesticides, and modern farm equipment. Trusted by farmers across India."
+      keywords="agricultural products, seeds, fertilizers, pesticides, farm equipment, farming supplies India"
+    />
     <section className="relative pt-32 pb-20 text-white overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

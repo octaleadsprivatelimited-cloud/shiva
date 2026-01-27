@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +11,11 @@ import heroImage from "@/assets/hero-farmland.jpg";
 const Contact = () => {
   return (
     <Layout>
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Shiva Agri Clinic for expert agricultural consultation. Contact our agricultural experts for personalized farming solutions, crop advisory, and smart farming technologies. Phone: +91 70135 70447"
+        keywords="contact Shiva Agri Clinic, agricultural consultation, farming advice, crop advisory contact, agricultural experts India"
+      />
       <section className="relative pt-32 pb-20 text-white overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

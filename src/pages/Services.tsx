@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { ArrowRight, Leaf, Bug, Sprout } from "lucide-react";
 import heroImage from "@/assets/farmer-consultation.jpg";
@@ -11,6 +12,11 @@ const services = [
 
 const Services = () => (
   <Layout>
+    <SEO
+      title="Our Services"
+      description="Comprehensive agricultural services from Shiva Agri Clinic: Crop Advisory, Pest Management, and Organic Farming. Expert guidance for modern farmers across India."
+      keywords="agricultural services, crop advisory, pest management, organic farming, farming services India"
+    />
     <section className="relative pt-32 pb-20 text-white overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

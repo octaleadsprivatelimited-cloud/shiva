@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Youtube, Instagram, Facebook, Twitter, Linkedin, ArrowRight, Users, Target, Heart, Award } from "lucide-react";
@@ -8,6 +9,11 @@ import heroImage from "@/assets/hero-farmland.jpg";
 const About = () => {
   return (
     <Layout>
+      <SEO
+        title="About Us"
+        description="Learn about Shiva Agri Clinic, founded by Shiva Kumar. We empower farmers across India with expert agricultural knowledge, modern farming techniques, and sustainable practices. Serving 50,000+ farmers."
+        keywords="about Shiva Agri Clinic, Shiva Kumar, agricultural company India, farming solutions, agricultural expertise"
+      />
       {/* Hero */}
       <section className="relative pt-32 pb-20 text-white overflow-hidden">
         <div 

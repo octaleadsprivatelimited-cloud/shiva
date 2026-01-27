@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout";
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { ArrowRight, Smartphone, Leaf, TrendingUp, Truck } from "lucide-react";
 import heroImage from "@/assets/smart-farming.jpg";
@@ -12,6 +13,11 @@ const solutions = [
 
 const Solutions = () => (
   <Layout>
+    <SEO
+      title="Our Solutions"
+      description="Innovative agricultural solutions from Shiva Agri Clinic: Smart Farming, Sustainable Agriculture, Crop Health Monitoring, and Supply Chain Management for modern farmers."
+      keywords="smart farming, sustainable agriculture, crop health monitoring, supply chain, agricultural technology, farming solutions"
+    />
     <section className="relative pt-32 pb-20 text-white overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
