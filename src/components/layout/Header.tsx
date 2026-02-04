@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, Search, Phone, Youtube, Instagram, Facebook, Link
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import logoImage from "@/assets/final logo 1 copy.png";
 
 type NavItem = {
   label: string;
@@ -113,26 +114,21 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-primary",
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-md py-2"
-          : "bg-transparent py-4"
+          ? "shadow-md py-2"
+          : "py-4"
       )}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2">
-            <div className="flex items-center">
-              <span className={cn(
-                "text-2xl font-heading font-bold transition-colors",
-                isScrolled ? "text-primary" : "text-primary-foreground"
-              )}>
-                Shiva
-              </span>
-              <span className="text-2xl font-heading font-bold text-accent">Agri</span>
-              <div className="w-2 h-2 bg-accent rounded-full ml-0.5 -mt-4" />
-            </div>
+          <Link to="/" onClick={handleLogoClick} className="flex items-center focus:outline-none">
+            <img
+              src={logoImage}
+              alt="Shiva Agri Clinic"
+              className="h-14 w-auto md:h-20 object-contain object-center min-w-[160px] md:min-w-[220px]"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -149,9 +145,7 @@ export const Header = () => {
                   onClick={(e) => handleNavClick(e, item)}
                   className={cn(
                     "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg",
-                    isScrolled
-                      ? "text-foreground hover:text-accent hover:bg-muted"
-                      : "text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                    "text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10"
                   )}
                 >
                   {item.label}
@@ -191,9 +185,7 @@ export const Header = () => {
           <div className="hidden lg:flex items-center gap-3">
             <button className={cn(
               "p-2 rounded-full transition-colors",
-              isScrolled
-                ? "text-foreground hover:bg-muted"
-                : "text-primary-foreground hover:bg-primary-foreground/10"
+              "text-primary-foreground hover:bg-primary-foreground/10"
             )}>
               <Search className="w-5 h-5" />
             </button>
@@ -205,9 +197,7 @@ export const Header = () => {
                 rel="noopener noreferrer"
                 className={cn(
                   "p-2 rounded-full transition-colors",
-                  isScrolled
-                    ? "text-foreground hover:bg-muted"
-                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                  "text-primary-foreground hover:bg-primary-foreground/10"
                 )}
               >
                 <Youtube className="w-5 h-5" />
@@ -218,9 +208,7 @@ export const Header = () => {
                 rel="noopener noreferrer"
                 className={cn(
                   "p-2 rounded-full transition-colors",
-                  isScrolled
-                    ? "text-foreground hover:bg-muted"
-                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                  "text-primary-foreground hover:bg-primary-foreground/10"
                 )}
               >
                 <Instagram className="w-5 h-5" />
@@ -231,9 +219,7 @@ export const Header = () => {
                 rel="noopener noreferrer"
                 className={cn(
                   "p-2 rounded-full transition-colors",
-                  isScrolled
-                    ? "text-foreground hover:bg-muted"
-                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                  "text-primary-foreground hover:bg-primary-foreground/10"
                 )}
               >
                 <Facebook className="w-5 h-5" />
@@ -244,9 +230,7 @@ export const Header = () => {
                 rel="noopener noreferrer"
                 className={cn(
                   "p-2 rounded-full transition-colors",
-                  isScrolled
-                    ? "text-foreground hover:bg-muted"
-                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                  "text-primary-foreground hover:bg-primary-foreground/10"
                 )}
               >
                 <Twitter className="w-5 h-5" />
@@ -257,9 +241,7 @@ export const Header = () => {
                 rel="noopener noreferrer"
                 className={cn(
                   "p-2 rounded-full transition-colors",
-                  isScrolled
-                    ? "text-foreground hover:bg-muted"
-                    : "text-primary-foreground hover:bg-primary-foreground/10"
+                  "text-primary-foreground hover:bg-primary-foreground/10"
                 )}
               >
                 <Linkedin className="w-5 h-5" />
@@ -278,9 +260,7 @@ export const Header = () => {
           <button
             className={cn(
               "lg:hidden p-2 rounded-lg transition-colors",
-              isScrolled
-                ? "text-foreground hover:bg-muted"
-                : "text-primary-foreground hover:bg-primary-foreground/10"
+              "text-primary-foreground hover:bg-primary-foreground/10"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
