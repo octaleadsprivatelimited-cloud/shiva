@@ -22,6 +22,11 @@ const partners = [
   { image: partner10, alt: "Partner Brand 10" },
 ];
 
+/** First row logos (different from second row) */
+const partnersRow1 = partners.slice(0, 5);
+/** Second row logos (different from first row) */
+const partnersRow2 = partners.slice(5, 10);
+
 export const PartnersSection = () => {
   return (
     <section id="partners" className="py-16 bg-background border-y border-border overflow-hidden scroll-mt-20">
@@ -35,7 +40,7 @@ export const PartnersSection = () => {
       <div className="relative overflow-hidden space-y-4">
         {/* First row - scrolls left */}
         <div className="flex animate-marquee">
-          {[...partners, ...partners].map((partner, index) => (
+          {[...partnersRow1, ...partnersRow1].map((partner, index) => (
             <div
               key={`row1-${index}`}
               className="flex-shrink-0 px-6 md:px-8 py-4"
@@ -62,7 +67,7 @@ export const PartnersSection = () => {
         
         {/* Second row - scrolls right (reverse) */}
         <div className="flex animate-marquee-reverse">
-          {[...partners, ...partners].map((partner, index) => (
+          {[...partnersRow2, ...partnersRow2].map((partner, index) => (
             <div
               key={`row2-${index}`}
               className="flex-shrink-0 px-6 md:px-8 py-4"

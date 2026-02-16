@@ -116,18 +116,18 @@ export const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-primary",
         isScrolled
-          ? "shadow-md py-2"
-          : "py-4"
+          ? "shadow-md py-1"
+          : "py-2"
       )}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" onClick={handleLogoClick} className="flex items-center focus:outline-none">
+          {/* Logo - fixed-height wrapper keeps header short; larger img overflows for bigger logo */}
+          <Link to="/" onClick={handleLogoClick} className="flex items-center justify-center focus:outline-none h-12 md:h-14 overflow-visible shrink-0">
             <img
               src={logoImage}
               alt="Shiva Agri Clinic"
-              className="h-14 w-auto md:h-20 object-contain object-center min-w-[160px] md:min-w-[220px]"
+              className="h-[72px] w-auto md:h-28 object-contain object-center min-w-[180px] md:min-w-[280px] scale-125 origin-center"
             />
           </Link>
 
@@ -248,9 +248,9 @@ export const Header = () => {
               </a>
             </div>
 
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="hero" size="default" className="text-sm px-3 h-9" asChild>
               <Link to="/contact">
-                <Phone className="w-4 h-4 mr-2" />
+                <Phone className="w-3.5 h-3.5 mr-1.5" />
                 Get Consultation
               </Link>
             </Button>

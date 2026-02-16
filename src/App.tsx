@@ -19,7 +19,6 @@ import KnowledgeBase from "./pages/KnowledgeBase";
 import Videos from "./pages/Videos";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
-import Sitemap from "./pages/Sitemap";
 import CropAdvisory from "./pages/services/CropAdvisory";
 import PestManagement from "./pages/services/PestManagement";
 import OrganicFarming from "./pages/services/OrganicFarming";
@@ -72,7 +71,6 @@ const App = () => (
           <Route path="/videos" element={<Videos />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/sitemap" element={<Sitemap />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

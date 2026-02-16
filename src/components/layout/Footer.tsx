@@ -252,9 +252,9 @@ export const Footer = () => {
               <Link to="/terms" className="hover:text-accent transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/sitemap" className="hover:text-accent transition-colors">
+              <a href="/sitemap.xml" className="hover:text-accent transition-colors">
                 Sitemap
-              </Link>
+              </a>
             </div>
           </div>
           <div className="text-center mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-primary-foreground/10">
