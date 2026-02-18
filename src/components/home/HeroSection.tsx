@@ -7,6 +7,8 @@ import heroFarmland from "@/assets/hero-farmland.jpg";
 import smartFarming from "@/assets/smart-farming.jpg";
 import sustainableFarming from "@/assets/sustainable-farming.jpg";
 import supplyChain from "@/assets/supply-chain.jpg";
+import heroGallery1 from "@/assets/gallery/6142.jpg.jpeg";
+import heroGallery2 from "@/assets/gallery/6229.jpg.jpeg";
 
 const slides = [
   {
@@ -44,6 +46,24 @@ const slides = [
     subtitle: "Solutions",
     description: "Optimize your agricultural supply chain with our comprehensive solutions for sourcing, quality control, and market access to maximize your profits.",
     cta: { label: "Learn More", href: "/solutions/supply-chain" },
+  },
+  {
+    id: 5,
+    image: heroGallery1,
+    title: "Transforming Farms",
+    highlight: "Across India",
+    subtitle: "",
+    description: "Our team visits farms regularly to provide on-ground expertise, crop health assessments, and tailored solutions for better yields and farmer success.",
+    cta: { label: "View Gallery", href: "/gallery" },
+  },
+  {
+    id: 6,
+    image: heroGallery2,
+    title: "Real Results,",
+    highlight: "Real Farmers",
+    subtitle: "",
+    description: "See how Shiva Agri Clinic's guidance and solutions have helped farmers achieve healthier crops, higher productivity, and sustainable practices.",
+    cta: { label: "Our Success Stories", href: "/gallery" },
   },
 ];
 
