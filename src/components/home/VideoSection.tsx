@@ -1,40 +1,20 @@
 import { useState } from "react";
-import { Play, Youtube, ExternalLink, X } from "lucide-react";
+import { Play, Youtube, ExternalLink, X, Clock, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const videos = [
-  {
-    id: "E34AVct0mew",
-    title: "Cotton Pest Management - Complete Guide",
-    views: "125K views",
-    duration: "15:32",
-  },
-  {
-    id: "E34AVct0mew",
-    title: "Soil Testing for Better Crop Yields",
-    views: "89K views",
-    duration: "12:45",
-  },
-  {
-    id: "E34AVct0mew",
-    title: "Organic Farming Success Stories",
-    views: "156K views",
-    duration: "18:20",
-  },
-  {
-    id: "E34AVct0mew",
-    title: "Paddy Cultivation Best Practices",
-    views: "98K views",
-    duration: "22:10",
-  },
+  { id: "LXF8l0jNKII", title: "Farmer Safety Shoes | Agriculture & Paddy Shoes", category: "Farm Equipment", views: "", duration: "" },
+  { id: "po9-ZxJuWok", title: "Elevated Shed Goat & Sheep Farming | Goat Farm", category: "Animal Farming", views: "", duration: "" },
+  { id: "UYU4vo_lWbw", title: "Jasmine Cultivation In Telugu | Flowers Farming", category: "Flower Farming", views: "", duration: "" },
+  { id: "rGkpq0tbQlM", title: "Biggest Vermicompost Unit | Vermicompost Uses", category: "Organic Farming", views: "", duration: "" },
+  { id: "hg6IC4SpMTM", title: "Drip Irrigation Setup", category: "Irrigation", views: "", duration: "" },
+  { id: "PuWsQ6NHrdg", title: "GAC Fruit Farming In Telugu", category: "Fruit Farming", views: "", duration: "" },
+  { id: "qwlitviu-U8", title: "Largest Pig Farming Unit | Pig Farming In Telugu", category: "Animal Farming", views: "", duration: "" },
+  { id: "m2eAMyayS_4", title: "Natural Fertilizers Guide", category: "Organic Farming", views: "", duration: "" },
+  { id: "Ge14ghL1cd0", title: "Marut Drones In Agriculture | Spraying Drones", category: "Technology", views: "", duration: "" },
+  { id: "fLe62_HXsmw", title: "Madhu Kamini Decoration Leaf Farming", category: "Decoration Crops", views: "", duration: "" },
 ];
-
-const featuredVideo = {
-  id: "E34AVct0mew",
-  title: "Introduction to Shiva Agri Clinic Services",
-  description: "Learn about our comprehensive agricultural solutions",
-};
 
 export const VideoSection = () => {
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
@@ -49,14 +29,14 @@ export const VideoSection = () => {
 
   return (
     <>
-      {/* Video Modal */}
+      {/* Video Modal - same as Videos page */}
       {playingVideo && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-background/90 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={handleCloseVideo}
         >
-          <div 
-            className="relative w-full max-w-4xl aspect-video"
+          <div
+            className="relative w-full max-w-5xl aspect-video"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -104,75 +84,39 @@ export const VideoSection = () => {
             </a>
           </div>
 
-          {/* Featured Video */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-12">
-            <div 
-              className="relative aspect-video rounded-xl md:rounded-2xl overflow-hidden bg-primary-foreground/10 group cursor-pointer"
-              onClick={() => handlePlayVideo(featuredVideo.id)}
-            >
-              <img
-                src={`https://img.youtube.com/vi/${featuredVideo.id}/maxresdefault.jpg`}
-                alt={featuredVideo.title}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.src = `https://img.youtube.com/vi/${featuredVideo.id}/hqdefault.jpg`;
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-accent flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
-                  <Play className="w-6 h-6 md:w-8 md:h-8 text-accent-foreground fill-current ml-1" />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                <span className="text-[10px] md:text-xs bg-accent text-accent-foreground px-2 py-1 rounded font-semibold">
-                  Featured
-                </span>
-                <h3 className="text-base md:text-xl font-heading font-semibold mt-2">
-                  {featuredVideo.title}
-                </h3>
-                <p className="text-primary-foreground/70 text-xs md:text-sm mt-1">
-                  {featuredVideo.description}
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-3 md:space-y-4">
-              {videos.map((video) => (
-                <div
-                  key={video.id}
-                  onClick={() => handlePlayVideo(video.id)}
-                  className="flex gap-3 md:gap-4 p-2 md:p-3 rounded-lg md:rounded-xl bg-primary-foreground/5 border border-primary-foreground/10 hover:bg-primary-foreground/10 transition-colors group cursor-pointer"
-                >
-                  <div className="relative w-28 md:w-40 aspect-video rounded-md md:rounded-lg overflow-hidden bg-primary-foreground/10 flex-shrink-0">
-                    <img
-                      src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
-                      alt={video.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-3 h-3 md:w-4 md:h-4 text-accent-foreground fill-current ml-0.5" />
-                      </div>
+          {/* Video grid - same as Videos page */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8 md:mb-12">
+            {videos.map((video) => (
+              <button
+                key={video.id}
+                type="button"
+                onClick={() => handlePlayVideo(video.id)}
+                className="group text-left rounded-xl overflow-hidden border border-primary-foreground/20 bg-primary-foreground/10 hover:border-accent hover:shadow-lg transition-all"
+              >
+                <div className="aspect-video relative bg-primary-foreground/10">
+                  <img
+                    src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
+                    alt={video.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-colors">
+                    <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center">
+                      <Play className="w-7 h-7 text-accent-foreground ml-1" fill="currentColor" />
                     </div>
-                    <span className="absolute bottom-1 right-1 text-[10px] md:text-xs bg-primary/80 px-1 md:px-1.5 py-0.5 rounded">
-                      {video.duration}
-                    </span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-xs md:text-sm line-clamp-2 group-hover:text-accent transition-colors">
-                      {video.title}
-                    </h4>
-                    <p className="text-primary-foreground/60 text-[10px] md:text-xs mt-1">
-                      Shiva Agri Clinic
-                    </p>
-                    <p className="text-primary-foreground/60 text-[10px] md:text-xs">
-                      {video.views}
-                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className="p-4">
+                  <span className="text-xs text-primary-foreground/70">{video.category}</span>
+                  <h3 className="font-semibold mt-1 line-clamp-2 text-primary-foreground">{video.title}</h3>
+                  {(video.views || video.duration) && (
+                    <div className="flex items-center gap-2 mt-2 text-sm text-primary-foreground/60">
+                      {video.views && <span className="flex items-center gap-1"><Eye className="w-4 h-4" /> {video.views}</span>}
+                      {video.duration && <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {video.duration}</span>}
+                    </div>
+                  )}
+                </div>
+              </button>
+            ))}
           </div>
 
           {/* Stats */}

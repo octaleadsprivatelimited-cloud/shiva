@@ -44,20 +44,31 @@ export const AboutSection = () => {
             </div>
           </ScrollAnimation>
 
-          {/* Video Embed */}
+          {/* Video Embed - main channel thumbnail */}
           <ScrollAnimation animation="slide-left" delay={200}>
             <div className="relative mt-6 sm:mt-8 lg:mt-0">
-              <div className="aspect-video rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden bg-primary shadow-lg sm:shadow-2xl">
-                <div className="w-full h-full flex items-center justify-center">
-                  <a
-                    href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-accent flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-glow touch-manipulation"
-                  >
-                    <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-accent-foreground fill-current ml-0.5 sm:ml-1" />
-                  </a>
-                </div>
+              <div className="relative aspect-video rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden bg-primary shadow-lg sm:shadow-2xl">
+                <a
+                  href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full h-full group"
+                >
+                  <img
+                    src="https://img.youtube.com/vi/LXF8l0jNKII/maxresdefault.jpg"
+                    alt="Shiva Agri Clinic YouTube Channel"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      e.currentTarget.src = "https://img.youtube.com/vi/LXF8l0jNKII/hqdefault.jpg";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 active:scale-95 transition-transform shadow-glow touch-manipulation">
+                      <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-accent-foreground fill-current ml-0.5 sm:ml-1" />
+                    </span>
+                  </div>
+                </a>
               </div>
               {/* Decorative Elements - Hidden on mobile, visible on larger screens */}
               <div className="hidden sm:block absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 bg-accent/20 rounded-xl sm:rounded-2xl -z-10" />
