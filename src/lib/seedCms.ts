@@ -3,16 +3,20 @@ import { blogPosts } from "@/data/blogPosts";
 import { defaultGalleryItems } from "@/data/galleryData";
 import { defaultProductHighlights } from "@/data/productHighlights";
 import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
-import { db } from "@/lib/firebase";
+import { getDb } from "@/lib/firebase";
 
 const SETTINGS_COL = "settings";
 const SITE_DOC_ID = "site";
 
 export async function seedSiteSettingsToFirestore(): Promise<void> {
+  const db = getDb();
+  if (!db) throw new Error("Firebase is not configured.");
   await setDoc(doc(db, SETTINGS_COL, SITE_DOC_ID), defaultSiteSettings, { merge: true });
 }
 
 export async function seedBlogPostsToFirestore(): Promise<void> {
+  const db = getDb();
+  if (!db) throw new Error("Firebase is not configured.");
   const batch = writeBatch(db);
   for (const p of blogPosts) {
     const ref = doc(db, "blogPosts", p.slug);
@@ -34,6 +38,8 @@ export async function seedBlogPostsToFirestore(): Promise<void> {
 }
 
 export async function seedGalleryToFirestore(): Promise<void> {
+  const db = getDb();
+  if (!db) throw new Error("Firebase is not configured.");
   const batch = writeBatch(db);
   for (const item of defaultGalleryItems) {
     const ref = doc(db, "galleryItems", String(item.id));
@@ -49,6 +55,8 @@ export async function seedGalleryToFirestore(): Promise<void> {
 }
 
 export async function seedProductsToFirestore(): Promise<void> {
+  const db = getDb();
+  if (!db) throw new Error("Firebase is not configured.");
   const col = collection(db, "products");
   const batch = writeBatch(db);
   defaultProductHighlights.forEach((p, index) => {

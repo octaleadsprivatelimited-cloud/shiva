@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Leaf } from "lucide-react";
+import { isFirebaseConfigured } from "@/lib/firebase";
 
 const AdminLogin = () => {
   const { signIn, user } = useAuth();
@@ -36,6 +37,27 @@ const AdminLogin = () => {
       setSubmitting(false);
     }
   };
+
+  if (!isFirebaseConfigured()) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-muted/40 p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center space-y-2">
+            <CardTitle>Cannot sign in</CardTitle>
+            <CardDescription>
+              Firebase is not configured for this deployment. Add all <code className="text-xs">VITE_FIREBASE_*</code>{" "}
+              variables in Vercel (see <code className="text-xs">.env.example</code>), redeploy, then return here.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center">
+            <Button variant="outline" asChild>
+              <Link to="/">Back to website</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted/40 p-4">

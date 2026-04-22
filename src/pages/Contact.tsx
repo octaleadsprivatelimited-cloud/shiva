@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Youtube, Instagram, Facebook, Twitter, Linkedin, Send } from "lucide-react";
 import heroImage from "@/assets/hero-farmland.jpg";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { getDb } from "@/lib/firebase";
 import { useSiteSettings } from "@/hooks/useCmsFirestore";
 import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
 import { toast } from "sonner";
@@ -31,6 +31,14 @@ const Contact = () => {
     }
     setSubmitting(true);
     try {
+      const db = getDb();
+      if (!db) {
+        toast.error(
+          "Contact form is unavailable: Firebase is not configured. Add VITE_FIREBASE_* variables in Vercel and redeploy.",
+        );
+        setSubmitting(false);
+        return;
+      }
       const payload: Record<string, unknown> = {
         name,
         email: email.trim(),

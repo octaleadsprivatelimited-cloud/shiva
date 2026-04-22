@@ -13,7 +13,7 @@ import {
   signOut as firebaseSignOut,
   type User,
 } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
 
 type AuthContextValue = {
   user: User | null;
@@ -29,6 +29,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const auth = getFirebaseAuth();
+    if (!auth) {
+      setUser(null);
+      setLoading(false);
+      return;
+    }
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
@@ -37,11 +43,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signIn = useCallback(async (email: string, password: string) => {
+    const auth = getFirebaseAuth();
+    if (!auth) {
+      throw new Error(
+        "Firebase is not configured. In Vercel, add all VITE_FIREBASE_* variables from .env.example and redeploy.",
+      );
+    }
     await signInWithEmailAndPassword(auth, email.trim(), password);
   }, []);
 
   const signOut = useCallback(async () => {
-    await firebaseSignOut(auth);
+    const auth = getFirebaseAuth();
+    if (auth) await firebaseSignOut(auth);
   }, []);
 
   const value = useMemo(

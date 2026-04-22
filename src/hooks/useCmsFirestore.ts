@@ -13,7 +13,7 @@ import {
   where,
   type Timestamp,
 } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { getDb } from "@/lib/firebase";
 import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
 import type {
   FirestoreBlogPost,
@@ -26,10 +26,22 @@ import type {
 const SETTINGS_COL = "settings";
 const SITE_DOC_ID = "site";
 
+function requireDb() {
+  const db = getDb();
+  if (!db) {
+    throw new Error(
+      "Firebase is not configured. In Vercel → Settings → Environment Variables, add every VITE_FIREBASE_* key from .env.example, then redeploy.",
+    );
+  }
+  return db;
+}
+
 export function useSiteSettings() {
   return useQuery({
     queryKey: ["cms", "settings", SITE_DOC_ID],
     queryFn: async (): Promise<SiteSettings> => {
+      const db = getDb();
+      if (!db) return defaultSiteSettings;
       const snap = await getDoc(doc(db, SETTINGS_COL, SITE_DOC_ID));
       if (!snap.exists()) return defaultSiteSettings;
       return { ...defaultSiteSettings, ...(snap.data() as Partial<SiteSettings>) };
@@ -42,6 +54,7 @@ export function useSaveSiteSettings() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (data: SiteSettings) => {
+      const db = requireDb();
       await setDoc(doc(db, SETTINGS_COL, SITE_DOC_ID), data, { merge: true });
     },
     onSuccess: async () => {
@@ -54,6 +67,8 @@ export function usePublishedFirestoreBlogPosts() {
   return useQuery({
     queryKey: ["cms", "blogPosts", "published"],
     queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
       const q = query(collection(db, "blogPosts"), where("status", "==", "published"));
       const snap = await getDocs(q);
       return snap.docs.map((d) => ({ id: d.id, ...(d.data() as FirestoreBlogPost) }));
@@ -68,6 +83,8 @@ export function useFirestoreBlogPost(slug: string | undefined) {
     enabled: !!slug,
     queryFn: async () => {
       if (!slug) return null;
+      const db = getDb();
+      if (!db) return null;
       try {
         const snap = await getDoc(doc(db, "blogPosts", slug));
         if (!snap.exists()) return null;
@@ -88,6 +105,8 @@ export function useAdminBlogPosts() {
   return useQuery({
     queryKey: ["cms", "blogPosts", "admin"],
     queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
       const snap = await getDocs(collection(db, "blogPosts"));
       const rows: AdminBlogRow[] = snap.docs.map((d) => ({
         id: d.id,
@@ -103,6 +122,7 @@ export function useSaveBlogPost() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (payload: FirestoreBlogPost) => {
+      const db = requireDb();
       const id = payload.slug.trim();
       const ref = doc(db, "blogPosts", id);
       const existing = await getDoc(ref);
@@ -133,6 +153,7 @@ export function useDeleteBlogPost() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
+      const db = requireDb();
       await deleteDoc(doc(db, "blogPosts", id));
     },
     onSuccess: async () => {
@@ -147,6 +168,8 @@ export function useGalleryItems() {
   return useQuery({
     queryKey: ["cms", "galleryItems"],
     queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
       const snap = await getDocs(collection(db, "galleryItems"));
       const rows: GalleryRow[] = snap.docs.map((d) => ({
         id: d.id,
@@ -162,6 +185,7 @@ export function useSaveGalleryItem() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (payload: { id?: string; data: FirestoreGalleryItem }) => {
+      const db = requireDb();
       if (payload.id) {
         await updateDoc(doc(db, "galleryItems", payload.id), {
           title: payload.data.title,
@@ -187,6 +211,7 @@ export function useDeleteGalleryItem() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
+      const db = requireDb();
       await deleteDoc(doc(db, "galleryItems", id));
     },
     onSuccess: async () => {
@@ -201,6 +226,8 @@ export function useProducts() {
   return useQuery({
     queryKey: ["cms", "products"],
     queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
       const snap = await getDocs(collection(db, "products"));
       const rows: ProductRow[] = snap.docs.map((d) => ({
         id: d.id,
@@ -216,6 +243,7 @@ export function useSaveProduct() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (payload: { id?: string; data: FirestoreProduct }) => {
+      const db = requireDb();
       if (payload.id) {
         await updateDoc(doc(db, "products", payload.id), {
           name: payload.data.name,
@@ -243,6 +271,7 @@ export function useDeleteProduct() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
+      const db = requireDb();
       await deleteDoc(doc(db, "products", id));
     },
     onSuccess: async () => {
@@ -260,6 +289,8 @@ export function useInquiries() {
   return useQuery({
     queryKey: ["cms", "inquiries"],
     queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
       const snap = await getDocs(collection(db, "inquiries"));
       const rows: InquiryRow[] = snap.docs.map((d) => ({
         id: d.id,
@@ -275,6 +306,7 @@ export function useUpdateInquiry() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, patch }: { id: string; patch: Partial<FirestoreInquiry> }) => {
+      const db = requireDb();
       await updateDoc(doc(db, "inquiries", id), patch);
     },
     onSuccess: async () => {
@@ -287,6 +319,7 @@ export function useDeleteInquiry() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
+      const db = requireDb();
       await deleteDoc(doc(db, "inquiries", id));
     },
     onSuccess: async () => {
