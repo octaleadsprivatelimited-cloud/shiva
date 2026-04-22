@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/contexts/AuthProvider";
+import { RequireAdmin } from "@/shiva-admin-suite/components/RequireAdmin";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -32,17 +34,26 @@ import CropHealth from "./pages/solutions/CropHealth";
 import SupplyChain from "./pages/solutions/SupplyChain";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import AdminDashboard from "./shiva-admin-suite/pages/Dashboard";
+import AdminBlogManagement from "./shiva-admin-suite/pages/BlogManagement";
+import AdminGalleryManagement from "./shiva-admin-suite/pages/GalleryManagement";
+import AdminProductManagement from "./shiva-admin-suite/pages/ProductManagement";
+import AdminInquiriesPage from "./shiva-admin-suite/pages/InquiriesPage";
+import AdminSettingsPage from "./shiva-admin-suite/pages/SettingsPage";
+import AdminNotFound from "./shiva-admin-suite/pages/AdminNotFound";
+import AdminLogin from "./shiva-admin-suite/pages/AdminLogin";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
@@ -71,10 +82,21 @@ const App = () => (
           <Route path="/videos" element={<Videos />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<RequireAdmin />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="blog" element={<AdminBlogManagement />} />
+            <Route path="gallery" element={<AdminGalleryManagement />} />
+            <Route path="products" element={<AdminProductManagement />} />
+            <Route path="inquiries" element={<AdminInquiriesPage />} />
+            <Route path="settings" element={<AdminSettingsPage />} />
+            <Route path="*" element={<AdminNotFound />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 

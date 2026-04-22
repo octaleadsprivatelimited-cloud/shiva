@@ -4,6 +4,8 @@ import { Youtube, Instagram, Facebook, Twitter, Linkedin, Phone, Mail, MapPin, A
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import footerBackground from "@/assets/footer-background.jpeg";
+import { useSiteSettings } from "@/hooks/useCmsFirestore";
+import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
 
 const footerLinks = {
   services: [
@@ -97,6 +99,7 @@ const FooterSection = ({
 };
 
 export const Footer = () => {
+  const { data: settings = defaultSiteSettings } = useSiteSettings();
   const [openSections, setOpenSections] = useState<string[]>([]);
 
   const toggleSection = (section: string) => {
@@ -150,11 +153,11 @@ export const Footer = () => {
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full ml-0.5 -mt-3 sm:-mt-4" />
             </Link>
             <p className="text-primary-foreground/70 mb-4 sm:mb-6 max-w-sm text-sm sm:text-base">
-              Empowering farmers with expert agricultural solutions, modern farming techniques, and sustainable practices since our founding by Shiva Kumar.
+              {settings.description}
             </p>
             <div className="flex gap-3 sm:gap-4 mb-4 sm:mb-6">
               <a
-                href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
+                href={settings.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
@@ -162,7 +165,7 @@ export const Footer = () => {
                 <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href="https://www.instagram.com/shiva_agriclinic/"
+                href={settings.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
@@ -170,7 +173,7 @@ export const Footer = () => {
                 <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href="https://www.facebook.com/share/175Yh7bMWg/"
+                href={settings.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
@@ -178,7 +181,7 @@ export const Footer = () => {
                 <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href="https://x.com/ShivaAgriClinic"
+                href={settings.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
@@ -186,7 +189,7 @@ export const Footer = () => {
                 <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                href={settings.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors"
@@ -197,15 +200,15 @@ export const Footer = () => {
             <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-primary-foreground/70">
               <div className="flex items-center gap-2 sm:gap-3">
                 <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
-                <span>+91 70135 70447</span>
+                <span>{settings.phone}</span>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
                 <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
-                <span>info@shivaagriclinic.com</span>
+                <span>{settings.email}</span>
               </div>
               <div className="flex items-start gap-2 sm:gap-3">
                 <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent mt-0.5" />
-                <span>India</span>
+                <span>{settings.location}</span>
               </div>
             </div>
           </div>

@@ -1,15 +1,51 @@
+import { useMemo } from "react";
 import { Layout } from "@/components/layout";
 import { Link, useParams } from "react-router-dom";
 import { Calendar, User, ArrowLeft, Clock, Share2 } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useFirestoreBlogPost } from "@/hooks/useCmsFirestore";
+import { firestoreBlogToDisplay, type BlogPostDisplay } from "@/lib/blogDisplay";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = blogPosts.find((p) => p.slug === slug);
+  const { data: fsRow, isPending } = useFirestoreBlogPost(slug);
+  const staticPost = blogPosts.find((p) => p.slug === slug);
+
+  const post: BlogPostDisplay | null = useMemo(() => {
+    if (fsRow && fsRow.status === "published") return firestoreBlogToDisplay(fsRow);
+    if (staticPost) {
+      return {
+        id: staticPost.slug,
+        slug: staticPost.slug,
+        title: staticPost.title,
+        excerpt: staticPost.excerpt,
+        content: staticPost.content,
+        category: staticPost.category,
+        date: staticPost.date,
+        author: staticPost.author,
+        image: typeof staticPost.image === "string" ? staticPost.image : String(staticPost.image),
+        readTime: staticPost.readTime,
+      };
+    }
+    return null;
+  }, [fsRow, staticPost]);
+
+  const relatedPosts = post
+    ? blogPosts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3)
+    : [];
 
   if (!post) {
+    if (isPending && !staticPost) {
+      return (
+        <Layout>
+          <section className="pt-32 pb-20 bg-background">
+            <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">Loading…</div>
+          </section>
+        </Layout>
+      );
+    }
     return (
       <Layout>
         <section className="pt-32 pb-20 bg-background">
@@ -24,11 +60,6 @@ const BlogPost = () => {
       </Layout>
     );
   }
-
-  // Get related posts (excluding current post)
-  const relatedPosts = blogPosts
-    .filter((p) => p.id !== post.id && p.category === post.category)
-    .slice(0, 3);
 
   return (
     <Layout>
@@ -160,7 +191,7 @@ const BlogPost = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedPosts.map((relatedPost) => (
                 <Link
-                  key={relatedPost.id}
+                  key={relatedPost.slug}
                   to={`/blog/${relatedPost.slug}`}
                   className="group bg-card rounded-xl md:rounded-2xl overflow-hidden border border-border hover:border-accent hover:shadow-lg transition-all block"
                 >
