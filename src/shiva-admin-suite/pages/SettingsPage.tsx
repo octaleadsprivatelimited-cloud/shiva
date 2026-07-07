@@ -5,27 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Save, Database } from "lucide-react";
+import { Save } from "lucide-react";
 import { toast } from "sonner";
 import { useSaveSiteSettings, useSiteSettings } from "@/hooks/useCmsFirestore";
 import type { SiteSettings } from "@/types/cms";
-import {
-  seedBlogPostsToFirestore,
-  seedGalleryToFirestore,
-  seedProductsToFirestore,
-  seedSiteSettingsToFirestore,
-  seedCareersToFirestore,
-  seedTeamToFirestore,
-  seedVideosToFirestore,
-  seedCaseStudiesToFirestore,
-  seedKnowledgeBaseToFirestore,
-} from "@/lib/seedCms";
-import { useQueryClient } from "@tanstack/react-query";
 
 const SettingsPage = () => {
   const { data: settings, isPending } = useSiteSettings();
   const saveSettings = useSaveSiteSettings();
-  const queryClient = useQueryClient();
   const [form, setForm] = useState<SiteSettings | null>(null);
 
   useEffect(() => {
@@ -42,18 +29,6 @@ const SettingsPage = () => {
     }
   };
 
-  const runSeed = async (label: string, fn: () => Promise<void>, queryKeys: readonly (readonly string[])[]) => {
-    try {
-      await fn();
-      for (const qk of queryKeys) {
-        await queryClient.invalidateQueries({ queryKey: [...qk] });
-      }
-      toast.success(`${label} imported`);
-    } catch (e) {
-      toast.error(e instanceof Error ? e.message : `${label} failed`);
-    }
-  };
-
   if (isPending || !form) {
     return (
       <AdminLayout title="Settings">
@@ -65,86 +40,7 @@ const SettingsPage = () => {
   return (
     <AdminLayout title="Settings">
       <div className="max-w-2xl space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
-              <Database className="h-4 w-4" />
-              Import current website content
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground">
-              Run these once (or when Firestore is empty) to copy existing blog articles, gallery photos, product
-              highlights, and contact defaults from the codebase into Firestore. You can then edit them from the admin
-              screens.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Site settings", seedSiteSettingsToFirestore, [["cms", "settings", "site"]])}
-              >
-                Site settings
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Blog posts", seedBlogPostsToFirestore, [["cms", "blogPosts"]])}
-              >
-                Blog posts
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Gallery", seedGalleryToFirestore, [["cms", "galleryItems"]])}
-              >
-                Gallery
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Products", seedProductsToFirestore, [["cms", "products"]])}
-              >
-                Products
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Careers", seedCareersToFirestore, [["cms", "careers"]])}
-              >
-                Careers
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Team", seedTeamToFirestore, [["cms", "teamMembers"]])}
-              >
-                Team
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Videos", seedVideosToFirestore, [["cms", "videos"]])}
-              >
-                Videos
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Case Studies", seedCaseStudiesToFirestore, [["cms", "caseStudies"]])}
-              >
-                Case Studies
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => void runSeed("Knowledge Base", seedKnowledgeBaseToFirestore, [["cms", "knowledgeBaseArticles"]])}
-              >
-                Knowledge Base
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+
 
         <Card>
           <CardHeader>
