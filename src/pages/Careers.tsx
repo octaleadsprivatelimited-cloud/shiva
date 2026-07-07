@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Clock, Briefcase, Users, Heart, Zap, GraduationCap } from "lucide-react";
 import heroImage from "@/assets/hero-farmland.jpg";
+import { useCareers } from "@/hooks/useCmsFirestore";
 
 const openings = [
   {
@@ -42,46 +43,50 @@ const benefits = [
   { icon: Users, title: "Team Culture", desc: "Collaborative and supportive environment" },
 ];
 
-const Careers = () => (
-  <Layout>
-    <section className="relative pt-32 pb-20 text-white overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
-      <div className="container mx-auto px-4 text-center relative z-10">
-        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">Join Our Team</h1>
-        <p className="text-xl text-white/90 max-w-2xl mx-auto">
-          Be part of the agricultural revolution. Help us empower farmers across India.
-        </p>
-      </div>
-    </section>
+const Careers = () => {
+  const { data: fsCareers = [] } = useCareers();
+  const jobs = fsCareers.length > 0 ? fsCareers : openings;
 
-    {/* Why Join Us */}
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-heading font-bold text-center mb-12">Why Join Shiva Agri Clinic?</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((benefit) => (
-            <div key={benefit.title} className="bg-card p-6 rounded-2xl border border-border text-center">
-              <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <benefit.icon className="w-7 h-7 text-accent" />
-              </div>
-              <h3 className="font-heading font-semibold mb-2">{benefit.title}</h3>
-              <p className="text-muted-foreground text-sm">{benefit.desc}</p>
-            </div>
-          ))}
+  return (
+    <Layout>
+      <section className="relative pt-32 pb-20 text-white overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">Join Our Team</h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            Be part of the agricultural revolution. Help us empower farmers across India.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    {/* Open Positions */}
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-heading font-bold text-center mb-12">Open Positions</h2>
-        <div className="max-w-4xl mx-auto space-y-4">
-          {openings.map((job) => (
+      {/* Why Join Us */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-heading font-bold text-center mb-12">Why Join Shiva Agri Clinic?</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit) => (
+              <div key={benefit.title} className="bg-card p-6 rounded-2xl border border-border text-center">
+                <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <benefit.icon className="w-7 h-7 text-accent" />
+                </div>
+                <h3 className="font-heading font-semibold mb-2">{benefit.title}</h3>
+                <p className="text-muted-foreground text-sm">{benefit.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Open Positions */}
+      <section className="py-20 bg-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-heading font-bold text-center mb-12">Open Positions</h2>
+          <div className="max-w-4xl mx-auto space-y-4">
+            {jobs.map((job) => (
             <div key={job.title} className="bg-card p-6 rounded-2xl border border-border hover:border-accent transition-colors">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 <div>
@@ -116,6 +121,7 @@ const Careers = () => (
       </div>
     </section>
   </Layout>
-);
+  );
+};
 
 export default Careers;

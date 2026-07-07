@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Search, BookOpen, Leaf, Bug, FlaskConical, Sprout, CloudRain, Droplets, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import heroImage from "@/assets/gallery/soil-testing.jpg";
+import { useKnowledgeBaseArticles } from "@/hooks/useCmsFirestore";
 
 const categories = [
   { icon: Leaf, title: "Crop Management", count: 45, desc: "Complete guides on growing various crops" },
@@ -24,8 +25,12 @@ const articles = [
   { title: "Natural Pest Repellents", category: "Pest & Disease Control", readTime: "7 min" },
 ];
 
-const KnowledgeBase = () => (
-  <Layout>
+const KnowledgeBase = () => {
+  const { data: fsArticles = [] } = useKnowledgeBaseArticles();
+  const list = fsArticles.length > 0 ? fsArticles : articles;
+
+  return (
+    <Layout>
     <section className="relative pt-32 pb-20 text-white overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -73,7 +78,7 @@ const KnowledgeBase = () => (
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-heading font-bold mb-8">Popular Articles</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          {articles.map((article) => (
+          {list.map((article) => (
             <div key={article.title} className="bg-card p-5 rounded-xl border border-border hover:border-accent transition-colors group cursor-pointer flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <BookOpen className="w-5 h-5 text-accent" />
@@ -102,6 +107,7 @@ const KnowledgeBase = () => (
       </div>
     </section>
   </Layout>
-);
+  );
+};
 
 export default KnowledgeBase;

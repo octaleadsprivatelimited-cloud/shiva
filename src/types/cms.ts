@@ -58,3 +58,54 @@ export type FirestoreInquiry = {
   read?: boolean;
   createdAt: Timestamp;
 };
+
+export type FirestoreCareer = {
+  title: string;
+  location: string;
+  type: string;
+  experience: string;
+  description: string;
+  createdAt?: Timestamp;
+};
+
+export type FirestoreTeamMember = {
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+  social?: {
+    youtube?: string;
+    instagram?: string;
+    linkedin?: string;
+  };
+  createdAt?: Timestamp;
+};
+
+export type FirestoreVideo = {
+  id: string;
+  title: string;
+  category: string;
+  views?: string;
+  duration?: string;
+  createdAt?: Timestamp;
+};
+
+export type FirestoreCaseStudy = {
+  title: string;
+  category: string;
+  location: string;
+  farmer: string;
+  challenge: string;
+  solution: string;
+  results: string[];
+  imageUrl?: string;
+  createdAt?: Timestamp;
+};
+
+export type FirestoreKnowledgeBaseArticle = {
+  title: string;
+  category: string;
+  readTime: string;
+  createdAt?: Timestamp;
+}
+

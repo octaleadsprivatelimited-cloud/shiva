@@ -1,13 +1,28 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AdminLayout } from "../components/AdminLayout";
-import { FileText, Image, ShoppingBag, MessageSquare, TrendingUp, Users, Eye } from "lucide-react";
-import { useAdminBlogPosts, useGalleryItems, useInquiries, useProducts } from "@/hooks/useCmsFirestore";
+import { FileText, Image, ShoppingBag, MessageSquare, TrendingUp, Users, Eye, Briefcase, Video, BookOpen } from "lucide-react";
+import {
+  useAdminBlogPosts,
+  useGalleryItems,
+  useInquiries,
+  useProducts,
+  useCareers,
+  useTeamMembers,
+  useVideos,
+  useCaseStudies,
+  useKnowledgeBaseArticles,
+} from "@/hooks/useCmsFirestore";
 
 const Dashboard = () => {
   const blogQ = useAdminBlogPosts();
   const galleryQ = useGalleryItems();
   const productsQ = useProducts();
   const inquiriesQ = useInquiries();
+  const careersQ = useCareers();
+  const teamQ = useTeamMembers();
+  const videosQ = useVideos();
+  const caseStudiesQ = useCaseStudies();
+  const kbQ = useKnowledgeBaseArticles();
 
   const blogCount = blogQ.data?.length ?? 0;
   const galleryCount = galleryQ.data?.length ?? 0;
@@ -83,6 +98,41 @@ const Dashboard = () => {
                   <span className="text-sm">Draft blog posts</span>
                 </div>
                 <span className="font-semibold">{blogQ.data?.filter((p) => p.status === "draft").length ?? 0}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
+                <div className="flex items-center gap-3">
+                  <Briefcase className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm">Career openings</span>
+                </div>
+                <span className="font-semibold">{careersQ.data?.length ?? 0}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
+                <div className="flex items-center gap-3">
+                  <Users className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm">Team members</span>
+                </div>
+                <span className="font-semibold">{teamQ.data?.length ?? 0}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
+                <div className="flex items-center gap-3">
+                  <Video className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm">Videos</span>
+                </div>
+                <span className="font-semibold">{videosQ.data?.length ?? 0}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
+                <div className="flex items-center gap-3">
+                  <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm">Case studies</span>
+                </div>
+                <span className="font-semibold">{caseStudiesQ.data?.length ?? 0}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm">KB articles</span>
+                </div>
+                <span className="font-semibold">{kbQ.data?.length ?? 0}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                 <div className="flex items-center gap-3">

@@ -42,6 +42,11 @@ import AdminInquiriesPage from "./shiva-admin-suite/pages/InquiriesPage";
 import AdminSettingsPage from "./shiva-admin-suite/pages/SettingsPage";
 import AdminNotFound from "./shiva-admin-suite/pages/AdminNotFound";
 import AdminLogin from "./shiva-admin-suite/pages/AdminLogin";
+import AdminCareersManagement from "./shiva-admin-suite/pages/CareersManagement";
+import AdminTeamManagement from "./shiva-admin-suite/pages/TeamManagement";
+import AdminVideosManagement from "./shiva-admin-suite/pages/VideosManagement";
+import AdminCaseStudiesManagement from "./shiva-admin-suite/pages/CaseStudiesManagement";
+import AdminKnowledgeBaseManagement from "./shiva-admin-suite/pages/KnowledgeBaseManagement";
 
 const queryClient = new QueryClient();
 
@@ -88,6 +93,11 @@ const App = () => (
             <Route path="blog" element={<AdminBlogManagement />} />
             <Route path="gallery" element={<AdminGalleryManagement />} />
             <Route path="products" element={<AdminProductManagement />} />
+            <Route path="careers" element={<AdminCareersManagement />} />
+            <Route path="team" element={<AdminTeamManagement />} />
+            <Route path="videos" element={<AdminVideosManagement />} />
+            <Route path="case-studies" element={<AdminCaseStudiesManagement />} />
+            <Route path="knowledge-base" element={<AdminKnowledgeBaseManagement />} />
             <Route path="inquiries" element={<AdminInquiriesPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
             <Route path="*" element={<AdminNotFound />} />

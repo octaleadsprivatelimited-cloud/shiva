@@ -21,6 +21,11 @@ import type {
   FirestoreInquiry,
   FirestoreProduct,
   SiteSettings,
+  FirestoreCareer,
+  FirestoreTeamMember,
+  FirestoreVideo,
+  FirestoreCaseStudy,
+  FirestoreKnowledgeBaseArticle,
 } from "@/types/cms";
 
 const SETTINGS_COL = "settings";
@@ -324,6 +329,300 @@ export function useDeleteInquiry() {
     },
     onSuccess: async () => {
       await qc.invalidateQueries({ queryKey: ["cms", "inquiries"] });
+    },
+  });
+}
+
+export type CareerRow = FirestoreCareer & { id: string };
+
+export function useCareers() {
+  return useQuery({
+    queryKey: ["cms", "careers"],
+    queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
+      const snap = await getDocs(collection(db, "careers"));
+      const rows: CareerRow[] = snap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as FirestoreCareer),
+      }));
+      rows.sort((a, b) => (b.createdAt?.toMillis?.() ?? 0) - (a.createdAt?.toMillis?.() ?? 0));
+      return rows;
+    },
+  });
+}
+
+export function useSaveCareer() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: { id?: string; data: FirestoreCareer }) => {
+      const db = requireDb();
+      if (payload.id) {
+        await updateDoc(doc(db, "careers", payload.id), {
+          title: payload.data.title,
+          location: payload.data.location,
+          type: payload.data.type,
+          experience: payload.data.experience,
+          description: payload.data.description,
+        });
+        return;
+      }
+      await addDoc(collection(db, "careers"), {
+        ...payload.data,
+        createdAt: serverTimestamp(),
+      });
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "careers"] });
+    },
+  });
+}
+
+export function useDeleteCareer() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const db = requireDb();
+      await deleteDoc(doc(db, "careers", id));
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "careers"] });
+    },
+  });
+}
+
+export type TeamMemberRow = FirestoreTeamMember & { id: string };
+
+export function useTeamMembers() {
+  return useQuery({
+    queryKey: ["cms", "teamMembers"],
+    queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
+      const snap = await getDocs(collection(db, "teamMembers"));
+      const rows: TeamMemberRow[] = snap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as FirestoreTeamMember),
+      }));
+      rows.sort((a, b) => (b.createdAt?.toMillis?.() ?? 0) - (a.createdAt?.toMillis?.() ?? 0));
+      return rows;
+    },
+  });
+}
+
+export function useSaveTeamMember() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: { id?: string; data: FirestoreTeamMember }) => {
+      const db = requireDb();
+      const docData: Record<string, unknown> = {
+        name: payload.data.name,
+        role: payload.data.role,
+        image: payload.data.image,
+        bio: payload.data.bio,
+      };
+      if (payload.data.social) {
+        docData.social = payload.data.social;
+      }
+      if (payload.id) {
+        await updateDoc(doc(db, "teamMembers", payload.id), docData);
+        return;
+      }
+      await addDoc(collection(db, "teamMembers"), {
+        ...docData,
+        createdAt: serverTimestamp(),
+      });
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "teamMembers"] });
+    },
+  });
+}
+
+export function useDeleteTeamMember() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const db = requireDb();
+      await deleteDoc(doc(db, "teamMembers", id));
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "teamMembers"] });
+    },
+  });
+}
+
+export type VideoRow = FirestoreVideo & { id: string };
+
+export function useVideos() {
+  return useQuery({
+    queryKey: ["cms", "videos"],
+    queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
+      const snap = await getDocs(collection(db, "videos"));
+      const rows: VideoRow[] = snap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as FirestoreVideo),
+      }));
+      rows.sort((a, b) => (b.createdAt?.toMillis?.() ?? 0) - (a.createdAt?.toMillis?.() ?? 0));
+      return rows;
+    },
+  });
+}
+
+export function useSaveVideo() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: { id?: string; data: FirestoreVideo }) => {
+      const db = requireDb();
+      if (payload.id) {
+        await updateDoc(doc(db, "videos", payload.id), {
+          id: payload.data.id,
+          title: payload.data.title,
+          category: payload.data.category,
+          views: payload.data.views ?? "",
+          duration: payload.data.duration ?? "",
+        });
+        return;
+      }
+      await addDoc(collection(db, "videos"), {
+        ...payload.data,
+        createdAt: serverTimestamp(),
+      });
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "videos"] });
+    },
+  });
+}
+
+export function useDeleteVideo() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const db = requireDb();
+      await deleteDoc(doc(db, "videos", id));
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "videos"] });
+    },
+  });
+}
+
+export type CaseStudyRow = FirestoreCaseStudy & { id: string };
+
+export function useCaseStudies() {
+  return useQuery({
+    queryKey: ["cms", "caseStudies"],
+    queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
+      const snap = await getDocs(collection(db, "caseStudies"));
+      const rows: CaseStudyRow[] = snap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as FirestoreCaseStudy),
+      }));
+      rows.sort((a, b) => (b.createdAt?.toMillis?.() ?? 0) - (a.createdAt?.toMillis?.() ?? 0));
+      return rows;
+    },
+  });
+}
+
+export function useSaveCaseStudy() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: { id?: string; data: FirestoreCaseStudy }) => {
+      const db = requireDb();
+      if (payload.id) {
+        await updateDoc(doc(db, "caseStudies", payload.id), {
+          title: payload.data.title,
+          category: payload.data.category,
+          location: payload.data.location,
+          farmer: payload.data.farmer,
+          challenge: payload.data.challenge,
+          solution: payload.data.solution,
+          results: payload.data.results,
+          imageUrl: payload.data.imageUrl ?? "",
+        });
+        return;
+      }
+      await addDoc(collection(db, "caseStudies"), {
+        ...payload.data,
+        createdAt: serverTimestamp(),
+      });
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "caseStudies"] });
+    },
+  });
+}
+
+export function useDeleteCaseStudy() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const db = requireDb();
+      await deleteDoc(doc(db, "caseStudies", id));
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "caseStudies"] });
+    },
+  });
+}
+
+export type KnowledgeBaseArticleRow = FirestoreKnowledgeBaseArticle & { id: string };
+
+export function useKnowledgeBaseArticles() {
+  return useQuery({
+    queryKey: ["cms", "knowledgeBaseArticles"],
+    queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
+      const snap = await getDocs(collection(db, "knowledgeBaseArticles"));
+      const rows: KnowledgeBaseArticleRow[] = snap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as FirestoreKnowledgeBaseArticle),
+      }));
+      rows.sort((a, b) => (b.createdAt?.toMillis?.() ?? 0) - (a.createdAt?.toMillis?.() ?? 0));
+      return rows;
+    },
+  });
+}
+
+export function useSaveKnowledgeBaseArticle() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: { id?: string; data: FirestoreKnowledgeBaseArticle }) => {
+      const db = requireDb();
+      if (payload.id) {
+        await updateDoc(doc(db, "knowledgeBaseArticles", payload.id), {
+          title: payload.data.title,
+          category: payload.data.category,
+          readTime: payload.data.readTime,
+        });
+        return;
+      }
+      await addDoc(collection(db, "knowledgeBaseArticles"), {
+        ...payload.data,
+        createdAt: serverTimestamp(),
+      });
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "knowledgeBaseArticles"] });
+    },
+  });
+}
+
+export function useDeleteKnowledgeBaseArticle() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const db = requireDb();
+      await deleteDoc(doc(db, "knowledgeBaseArticles", id));
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "knowledgeBaseArticles"] });
     },
   });
 }

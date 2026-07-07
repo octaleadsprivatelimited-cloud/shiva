@@ -1,7 +1,20 @@
 import { Layout } from "@/components/layout";
 import { Link } from "react-router-dom";
-import { ArrowRight, TrendingUp, Leaf, Bug, FlaskConical } from "lucide-react";
+import { ArrowRight, TrendingUp, Leaf, Bug, FlaskConical, HelpCircle } from "lucide-react";
 import successStory from "@/assets/gallery/success-story-1.jpg";
+import { useCaseStudies } from "@/hooks/useCmsFirestore";
+
+const categoryIcons: Record<string, any> = {
+  "crop advisory": Leaf,
+  "organic farming": Leaf,
+  "pest management": Bug,
+  "soil testing": FlaskConical,
+};
+
+const getCategoryIcon = (category: string) => {
+  const cat = (category || "").toLowerCase().trim();
+  return categoryIcons[cat] || TrendingUp;
+};
 
 const caseStudies = [
   {
@@ -54,8 +67,12 @@ const caseStudies = [
   },
 ];
 
-const CaseStudies = () => (
-  <Layout>
+const CaseStudies = () => {
+  const { data: fsCaseStudies = [] } = useCaseStudies();
+  const list = fsCaseStudies.length > 0 ? fsCaseStudies : caseStudies;
+
+  return (
+    <Layout>
     <section className="relative pt-32 pb-20 text-white overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -73,18 +90,22 @@ const CaseStudies = () => (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid gap-12">
-          {caseStudies.map((study, index) => (
-            <div key={study.id} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                <img src={study.image} alt={study.title} className="rounded-2xl shadow-lg w-full" />
-              </div>
-              <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
-                    <study.icon className="w-5 h-5 text-accent" />
-                  </div>
-                  <span className="text-accent font-semibold">{study.category}</span>
+          {list.map((study, index) => {
+            const IconComponent = getCategoryIcon(study.category);
+            const studyImage = (study as any).imageUrl || (study as any).image || successStory;
+
+            return (
+              <div key={study.id || index} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                  <img src={studyImage} alt={study.title} className="rounded-2xl shadow-lg w-full max-h-[350px] object-cover bg-muted" />
                 </div>
+                <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                      <IconComponent className="w-5 h-5 text-accent" />
+                    </div>
+                    <span className="text-accent font-semibold">{study.category}</span>
+                  </div>
                 <h2 className="text-2xl font-heading font-bold mb-2">{study.title}</h2>
                 <p className="text-muted-foreground mb-4">{study.location} • Farmer: {study.farmer}</p>
                 
@@ -111,7 +132,8 @@ const CaseStudies = () => (
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -129,7 +151,8 @@ const CaseStudies = () => (
       </div>
     </section>
   </Layout>
-);
+  );
+};
 
 import { Button } from "@/components/ui/button";
 export default CaseStudies;

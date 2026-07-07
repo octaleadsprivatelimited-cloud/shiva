@@ -7,6 +7,11 @@ import {
   Settings,
   Leaf,
   LogOut,
+  Briefcase,
+  Users,
+  Video,
+  TrendingUp,
+  BookOpen,
 } from "lucide-react";
 import { NavLink } from "./NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -30,6 +35,11 @@ const mainItems = [
   { title: "Blog Posts", url: "/admin/blog", icon: FileText },
   { title: "Gallery", url: "/admin/gallery", icon: Image },
   { title: "Products", url: "/admin/products", icon: ShoppingBag },
+  { title: "Careers", url: "/admin/careers", icon: Briefcase },
+  { title: "Team", url: "/admin/team", icon: Users },
+  { title: "Videos", url: "/admin/videos", icon: Video },
+  { title: "Case Studies", url: "/admin/case-studies", icon: TrendingUp },
+  { title: "Knowledge Base", url: "/admin/knowledge-base", icon: BookOpen },
   { title: "Inquiries", url: "/admin/inquiries", icon: MessageSquare },
 ];
 

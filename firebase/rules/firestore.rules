@@ -54,6 +54,31 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /careers/{careerId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /teamMembers/{memberId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /videos/{videoId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /caseStudies/{studyId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /knowledgeBaseArticles/{articleId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

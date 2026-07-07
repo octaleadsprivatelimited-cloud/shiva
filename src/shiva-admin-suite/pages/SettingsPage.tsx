@@ -14,6 +14,11 @@ import {
   seedGalleryToFirestore,
   seedProductsToFirestore,
   seedSiteSettingsToFirestore,
+  seedCareersToFirestore,
+  seedTeamToFirestore,
+  seedVideosToFirestore,
+  seedCaseStudiesToFirestore,
+  seedKnowledgeBaseToFirestore,
 } from "@/lib/seedCms";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -101,6 +106,41 @@ const SettingsPage = () => {
                 onClick={() => void runSeed("Products", seedProductsToFirestore, [["cms", "products"]])}
               >
                 Products
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => void runSeed("Careers", seedCareersToFirestore, [["cms", "careers"]])}
+              >
+                Careers
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => void runSeed("Team", seedTeamToFirestore, [["cms", "teamMembers"]])}
+              >
+                Team
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => void runSeed("Videos", seedVideosToFirestore, [["cms", "videos"]])}
+              >
+                Videos
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => void runSeed("Case Studies", seedCaseStudiesToFirestore, [["cms", "caseStudies"]])}
+              >
+                Case Studies
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => void runSeed("Knowledge Base", seedKnowledgeBaseToFirestore, [["cms", "knowledgeBaseArticles"]])}
+              >
+                Knowledge Base
               </Button>
             </div>
           </CardContent>

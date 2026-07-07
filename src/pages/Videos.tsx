@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Play, Clock, Eye, X } from "lucide-react";
 import heroImage from "@/assets/smart-farming.jpg";
+import { useVideos } from "@/hooks/useCmsFirestore";
 
 const videos = [
   { id: "LXF8l0jNKII", title: "Farmer Safety Shoes | Agriculture & Paddy Shoes", category: "Farm Equipment", views: "", duration: "" },
@@ -18,6 +19,9 @@ const videos = [
 ];
 
 const Videos = () => {
+  const { data: fsVideos = [] } = useVideos();
+  const videoList = fsVideos.length > 0 ? fsVideos : videos;
+
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   const handlePlayVideo = (videoId: string) => {
@@ -73,7 +77,7 @@ const Videos = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {videos.map((video) => (
+            {videoList.map((video) => (
               <button
                 key={video.id}
                 type="button"
