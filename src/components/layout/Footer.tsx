@@ -139,7 +139,7 @@ export const Footer = () => {
 
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-8 sm:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 md:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-2 mb-4 md:mb-0">
             <Link to="/" className="flex items-center mb-4 sm:mb-6">
@@ -217,7 +217,7 @@ export const Footer = () => {
             />
 
             {/* Contact Details Column */}
-            <div>
+            <div className="lg:col-span-2">
               {/* Desktop view */}
               <div className="hidden md:block">
                 <h4 className="font-heading font-semibold text-lg mb-4">Contact Details</h4>
