@@ -192,23 +192,9 @@ export const Footer = () => {
                 <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             </div>
-            <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-primary-foreground/70">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
-                <span>{settings.phone}</span>
-              </div>
-              <div className="flex items-center gap-2 sm:gap-3">
-                <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
-                <span>{settings.email}</span>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3">
-                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent mt-0.5" />
-                <span>{settings.location}</span>
-              </div>
-            </div>
+
           </div>
 
-          {/* Mobile Dropdowns / Desktop Links */}
           <div className="md:contents">
             <FooterSection 
               title="Services" 
@@ -229,6 +215,61 @@ export const Footer = () => {
               isOpen={openSections.includes('company')}
               onToggle={() => toggleSection('company')}
             />
+
+            {/* Contact Details Column */}
+            <div>
+              {/* Desktop view */}
+              <div className="hidden md:block">
+                <h4 className="font-heading font-semibold text-lg mb-4">Contact Details</h4>
+                <div className="space-y-3 text-sm text-primary-foreground/70">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent shrink-0" />
+                    <span>{settings.phone}</span>
+                  </div>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent shrink-0" />
+                    <span className="break-all">{settings.email}</span>
+                  </div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent mt-0.5 shrink-0" />
+                    <span>{settings.location}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile dropdown */}
+              <div className="md:hidden border-b border-primary-foreground/10 last:border-b-0">
+                <button
+                  onClick={() => toggleSection('contact')}
+                  className="flex items-center justify-between w-full py-3 text-primary-foreground font-semibold text-sm"
+                >
+                  Contact Details
+                  <ChevronDown className={cn(
+                    "w-4 h-4 transition-transform duration-200",
+                    openSections.includes('contact') && "rotate-180"
+                  )} />
+                </button>
+                <div className={cn(
+                  "overflow-hidden transition-all duration-300",
+                  openSections.includes('contact') ? "max-h-48 pb-3" : "max-h-0"
+                )}>
+                  <div className="space-y-2 pl-2 text-sm text-primary-foreground/70">
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-3.5 h-3.5 text-accent shrink-0" />
+                      <span>{settings.phone}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-3.5 h-3.5 text-accent shrink-0" />
+                      <span className="break-all">{settings.email}</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <MapPin className="w-3.5 h-3.5 text-accent mt-0.5 shrink-0" />
+                      <span>{settings.location}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
