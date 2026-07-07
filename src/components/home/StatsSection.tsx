@@ -3,11 +3,51 @@ import { cn } from "@/lib/utils";
 import { Users, TrendingUp, Leaf, Shield, IndianRupee } from "lucide-react";
 
 const stats = [
-  { value: 50000, suffix: "+", label: "Farmers Empowered", icon: Users },
-  { value: 85, suffix: "%", label: "Increase in Crop Yields", icon: TrendingUp },
-  { value: 200, suffix: "+", label: "Crops Covered", icon: Leaf },
-  { value: 75, suffix: "%", label: "Reduction in Pest Losses", icon: Shield },
-  { value: 30, suffix: "%", label: "Rise in Farmer Incomes", icon: IndianRupee },
+  { 
+    value: 50000, 
+    suffix: "+", 
+    label: "Farmers Empowered", 
+    subtext: "Farmers across India trust our advisory services for sustainable crop yields and modern practices.",
+    icon: Users,
+    className: "sm:col-span-3 text-left p-6 sm:p-10",
+    isLarge: true
+  },
+  { 
+    value: 85, 
+    suffix: "%", 
+    label: "Increase in Crop Yields", 
+    subtext: "Proven yield increase through scientific crop protection and precise input recommendations.",
+    icon: TrendingUp,
+    className: "sm:col-span-3 text-left p-6 sm:p-10",
+    isLarge: true
+  },
+  { 
+    value: 30, 
+    suffix: "%", 
+    label: "Rise in Farmer Incomes", 
+    subtext: "Direct increase in crop quality and efficiency translates to higher household earnings.",
+    icon: IndianRupee,
+    className: "sm:col-span-2 text-center p-6 sm:p-8",
+    isLarge: false
+  },
+  { 
+    value: 75, 
+    suffix: "%", 
+    label: "Reduction in Pest Losses", 
+    subtext: "Early diagnostic tools prevent major infestations before they spread.",
+    icon: Shield,
+    className: "sm:col-span-2 text-center p-6 sm:p-8",
+    isLarge: false
+  },
+  { 
+    value: 200, 
+    suffix: "+", 
+    label: "Crops Covered", 
+    subtext: "Extensive consulting sheets for grains, organic vegetables, and cash crops.",
+    icon: Leaf,
+    className: "sm:col-span-2 text-center p-6 sm:p-8",
+    isLarge: false
+  },
 ];
 
 const useCountUp = (end: number, duration: number = 2000) => {
@@ -49,7 +89,7 @@ const StatItem = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     if (ref.current) {
@@ -63,45 +103,52 @@ const StatItem = ({ stat, index }: { stat: typeof stats[0]; index: number }) => 
     <div
       ref={ref}
       className={cn(
-        "relative text-center p-3 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition-all duration-500 group",
-        "bg-primary-foreground/5 backdrop-blur-sm border border-primary-foreground/10",
-        "hover:bg-primary-foreground/10 hover:border-accent/50 hover:scale-105",
-        "transform",
+        "relative rounded-2xl transition-all duration-500 group overflow-hidden",
+        "bg-white/[0.04] backdrop-blur-md border border-white/[0.08]",
+        "hover:bg-white/[0.08] hover:border-accent/40 hover:-translate-y-1 hover:shadow-2xl",
+        stat.className,
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      {/* Glow effect on hover */}
-      <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+      {/* Background glow on hover */}
+      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
       
-      {/* Icon */}
+      {/* Visual content container */}
       <div className={cn(
-        "relative mx-auto w-10 h-10 sm:w-14 sm:h-14 mb-2 sm:mb-4 rounded-full flex items-center justify-center",
-        "bg-accent/20 text-accent transition-all duration-300",
-        "group-hover:bg-accent group-hover:text-primary group-hover:scale-110"
+        "relative h-full flex flex-col justify-between z-10",
+        stat.isLarge ? "sm:flex-row sm:items-center gap-6" : "items-center"
       )}>
-        <Icon className="w-5 h-5 sm:w-7 sm:h-7" />
-      </div>
-
-      {/* Counter */}
-      <div className="relative">
+        {/* Stat Value & Label */}
         <div className={cn(
-          "text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-accent mb-1 sm:mb-2",
-          "transition-all duration-300 group-hover:scale-110 break-words"
+          "flex-grow",
+          stat.isLarge ? "text-left" : "text-center"
         )}>
-          <span className="tabular-nums">{count.toLocaleString()}</span>
-          <span className="text-accent/80">{stat.suffix}</span>
+          {/* Number */}
+          <div className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-accent mb-2 tracking-tight">
+            <span className="tabular-nums">{count.toLocaleString()}</span>
+            <span>{stat.suffix}</span>
+          </div>
+          
+          {/* Label */}
+          <h3 className="text-base sm:text-lg font-heading font-semibold text-primary-foreground mb-1 leading-snug">
+            {stat.label}
+          </h3>
+          
+          {/* Subtext description */}
+          <p className="text-primary-foreground/60 text-xs sm:text-sm leading-relaxed max-w-md">
+            {stat.subtext}
+          </p>
         </div>
-        
-        {/* Animated underline */}
+
+        {/* Icon Circle */}
         <div className={cn(
-          "h-0.5 sm:h-1 bg-accent/30 rounded-full mx-auto mb-1.5 sm:mb-3 transition-all duration-500",
-          isVisible ? "w-8 sm:w-16" : "w-0"
-        )} />
-        
-        <p className="text-primary-foreground/80 text-[10px] sm:text-sm md:text-base font-medium leading-tight">
-          {stat.label}
-        </p>
+          "w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300",
+          "bg-accent/10 text-accent group-hover:bg-accent group-hover:text-primary group-hover:scale-105",
+          stat.isLarge ? "mt-4 sm:mt-0" : "mt-4"
+        )}>
+          <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
+        </div>
       </div>
     </div>
   );
@@ -116,7 +163,7 @@ export const StatsSection = () => {
         <div className="absolute -bottom-1/2 -right-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-accent/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
       </div>
       
-      <div className="container mx-auto px-3 sm:px-4 relative z-10">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 relative z-10">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-accent/20 text-accent rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             Our Impact
@@ -128,7 +175,7 @@ export const StatsSection = () => {
             We are the agricultural transformation leaders, empowering farmers across India with expert knowledge and modern solutions.
           </p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8">
           {stats.map((stat, index) => (
             <StatItem key={stat.label} stat={stat} index={index} />
           ))}
