@@ -221,14 +221,14 @@ export const Footer = () => {
               {/* Desktop view */}
               <div className="hidden md:block">
                 <h4 className="font-heading font-semibold text-lg mb-4">Contact Details</h4>
-                <div className="space-y-3 text-sm text-primary-foreground/70">
+                <div className="space-y-3 text-xs lg:text-sm text-primary-foreground/70">
                   <div className="flex items-center gap-2 sm:gap-3">
                     <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent shrink-0" />
                     <span>{settings.phone}</span>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-3">
                     <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent shrink-0" />
-                    <span className="break-all">{settings.email}</span>
+                    <span className="break-words">{settings.email}</span>
                   </div>
                   <div className="flex items-start gap-2 sm:gap-3">
                     <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent mt-0.5 shrink-0" />
@@ -260,7 +260,7 @@ export const Footer = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <Mail className="w-3.5 h-3.5 text-accent shrink-0" />
-                      <span className="break-all">{settings.email}</span>
+                      <span className="break-words">{settings.email}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <MapPin className="w-3.5 h-3.5 text-accent mt-0.5 shrink-0" />
