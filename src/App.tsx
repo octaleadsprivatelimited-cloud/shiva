@@ -66,11 +66,7 @@ const App = () => (
           <Route path="/services/crop-advisory" element={<CropAdvisory />} />
           <Route path="/services/pest-management" element={<PestManagement />} />
           <Route path="/services/organic-farming" element={<OrganicFarming />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/seeds" element={<Seeds />} />
-          <Route path="/products/fertilizers" element={<Fertilizers />} />
-          <Route path="/products/pesticides" element={<Pesticides />} />
-          <Route path="/products/equipment" element={<Equipment />} />
+
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/solutions/smart-farming" element={<SmartFarming />} />
           <Route path="/solutions/sustainable-agriculture" element={<SustainableAgriculture />} />

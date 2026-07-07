@@ -28,14 +28,14 @@ const services = [
     icon: Wheat,
     title: "Seed Solutions",
     description: "High-quality seeds selection and hybrid variety recommendations for maximum yield and disease resistance.",
-    href: "/products/seeds",
+    href: "/contact",
     color: "bg-accent/10 text-accent",
   },
   {
     icon: Tractor,
     title: "Farm Mechanization",
     description: "Modern farming equipment consultation and mechanization solutions to increase efficiency and reduce labor costs.",
-    href: "/products/equipment",
+    href: "/contact",
     color: "bg-navy/20 text-navy",
   },
 ];

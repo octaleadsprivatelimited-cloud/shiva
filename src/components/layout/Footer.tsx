@@ -13,12 +13,7 @@ const footerLinks = {
     { label: "Pest Management", href: "/services/pest-management" },
     { label: "Organic Farming", href: "/services/organic-farming" },
   ],
-  products: [
-    { label: "Fertilizers", href: "/products/fertilizers" },
-    { label: "Pesticides", href: "/products/pesticides" },
-    { label: "Seeds", href: "/products/seeds" },
-    { label: "Farm Equipment", href: "/products/equipment" },
-  ],
+
   solutions: [
     { label: "Smart Farming", href: "/solutions/smart-farming" },
     { label: "Sustainable Agriculture", href: "/solutions/sustainable-agriculture" },
@@ -221,12 +216,7 @@ export const Footer = () => {
               isOpen={openSections.includes('services')}
               onToggle={() => toggleSection('services')}
             />
-            <FooterSection 
-              title="Products" 
-              links={footerLinks.products} 
-              isOpen={openSections.includes('products')}
-              onToggle={() => toggleSection('products')}
-            />
+
             <FooterSection 
               title="Solutions" 
               links={footerLinks.solutions} 

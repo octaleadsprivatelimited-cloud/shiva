@@ -24,16 +24,7 @@ const navItems: NavItem[] = [
       { label: "Organic Farming", href: "/services/organic-farming" },
     ],
   },
-  {
-    label: "Products",
-    href: "/products",
-    dropdown: [
-      { label: "Fertilizers", href: "/products/fertilizers" },
-      { label: "Pesticides", href: "/products/pesticides" },
-      { label: "Seeds", href: "/products/seeds" },
-      { label: "Farm Equipment", href: "/products/equipment" },
-    ],
-  },
+
   {
     label: "Solutions",
     href: "/solutions",
