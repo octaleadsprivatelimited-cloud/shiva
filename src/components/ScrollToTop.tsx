@@ -5,7 +5,23 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Scroll to top instantly
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto"
+    });
+
+    // Fallback/deferred scroll to ensure it runs after React finishes rendering the DOM
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto"
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   return null;
