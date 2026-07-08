@@ -118,7 +118,7 @@ export const Header = () => {
             <img
               src={logoImage}
               alt="Shiva Agri Clinic"
-              className="h-16 w-16 md:h-20 md:w-20 absolute top-0 left-1/2 -translate-x-1/2 object-contain object-center drop-shadow-xl max-w-none bg-white rounded-full p-[3px] border-2 border-white"
+              className="h-20 w-20 md:h-24 md:w-24 absolute top-1 md:top-2 left-1/2 -translate-x-1/2 object-contain object-center drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] drop-shadow-[0_0_3px_rgba(255,255,255,0.85)] max-w-none"
             />
           </Link>
 
