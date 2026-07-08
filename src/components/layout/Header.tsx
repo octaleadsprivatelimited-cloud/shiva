@@ -114,11 +114,11 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo - fixed-height wrapper keeps header short; larger img overflows for bigger logo */}
-          <Link to="/" onClick={handleLogoClick} className="flex items-center justify-center focus:outline-none h-12 md:h-14 shrink-0">
+          <Link to="/" onClick={handleLogoClick} className="flex items-center justify-center focus:outline-none h-12 w-12 md:h-14 md:w-16 overflow-visible shrink-0 relative">
             <img
               src={logoImage}
               alt="Shiva Agri Clinic"
-              className="h-12 w-12 md:h-14 md:w-14 object-contain object-center drop-shadow-md"
+              className="h-18 w-18 md:h-22 md:w-22 absolute object-contain object-center drop-shadow-lg max-w-none"
             />
           </Link>
 
