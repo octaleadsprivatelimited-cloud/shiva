@@ -107,18 +107,18 @@ export const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-primary",
         isScrolled
-          ? "shadow-md py-1"
-          : "py-2"
+          ? "shadow-md py-0.5"
+          : "py-1"
       )}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo - fixed-height wrapper keeps header short; larger img overflows for bigger logo */}
-          <Link to="/" onClick={handleLogoClick} className="flex items-center justify-center focus:outline-none h-12 w-12 md:h-14 md:w-16 overflow-visible shrink-0 relative">
+          {/* Logo - contained inside header by reducing padding */}
+          <Link to="/" onClick={handleLogoClick} className="flex items-center justify-center focus:outline-none h-14 md:h-16 shrink-0">
             <img
               src={logoImage}
               alt="Shiva Agri Clinic"
-              className="h-20 w-20 md:h-24 md:w-24 absolute top-1 md:top-2 left-1/2 -translate-x-1/2 object-contain object-center drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] drop-shadow-[0_0_3px_rgba(255,255,255,0.85)] max-w-none"
+              className="h-14 w-14 md:h-16 md:w-16 object-contain object-center drop-shadow-[0_0_3px_rgba(255,255,255,0.85)]"
             />
           </Link>
 
