@@ -10,6 +10,7 @@ import {
   seedBlogPostsToFirestore,
   seedGalleryToFirestore,
   seedProductsToFirestore,
+  seedStatsToFirestore,
 } from "./lib/seedCms";
 
 async function run() {
@@ -70,6 +71,8 @@ async function run() {
     console.log("Seeded Case Studies.");
     await seedKnowledgeBaseToFirestore();
     console.log("Seeded Knowledge Base Articles.");
+    await seedStatsToFirestore();
+    console.log("Seeded Statistics.");
     console.log("Database seed completed successfully!");
 
     // Optionally delete the temporary user to leave the auth clean

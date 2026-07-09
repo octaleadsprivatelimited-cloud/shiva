@@ -47,6 +47,7 @@ import AdminTeamManagement from "./shiva-admin-suite/pages/TeamManagement";
 import AdminVideosManagement from "./shiva-admin-suite/pages/VideosManagement";
 import AdminCaseStudiesManagement from "./shiva-admin-suite/pages/CaseStudiesManagement";
 import AdminKnowledgeBaseManagement from "./shiva-admin-suite/pages/KnowledgeBaseManagement";
+import AdminStatsManagement from "./shiva-admin-suite/pages/StatsManagement";
 
 const queryClient = new QueryClient();
 
@@ -94,6 +95,7 @@ const App = () => (
             <Route path="videos" element={<AdminVideosManagement />} />
             <Route path="case-studies" element={<AdminCaseStudiesManagement />} />
             <Route path="knowledge-base" element={<AdminKnowledgeBaseManagement />} />
+            <Route path="stats" element={<AdminStatsManagement />} />
             <Route path="inquiries" element={<AdminInquiriesPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
             <Route path="*" element={<AdminNotFound />} />

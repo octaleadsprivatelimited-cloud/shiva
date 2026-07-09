@@ -109,3 +109,15 @@ export type FirestoreKnowledgeBaseArticle = {
   createdAt?: Timestamp;
 }
 
+export type FirestoreStat = {
+  label: string;
+  value: number;
+  suffix: string;
+  subtext: string;
+  iconName: string;
+  order: number;
+  createdAt?: Timestamp;
+};
+
+export type StatRow = { id: string } & FirestoreStat;
+

@@ -26,6 +26,8 @@ import type {
   FirestoreVideo,
   FirestoreCaseStudy,
   FirestoreKnowledgeBaseArticle,
+  FirestoreStat,
+  StatRow,
 } from "@/types/cms";
 
 const SETTINGS_COL = "settings";
@@ -623,6 +625,65 @@ export function useDeleteKnowledgeBaseArticle() {
     },
     onSuccess: async () => {
       await qc.invalidateQueries({ queryKey: ["cms", "knowledgeBaseArticles"] });
+    },
+  });
+}
+
+export function useFirestoreStats() {
+  return useQuery({
+    queryKey: ["cms", "stats"],
+    queryFn: async (): Promise<StatRow[]> => {
+      const db = getDb();
+      if (!db) return [];
+      const snap = await getDocs(collection(db, "stats"));
+      const rows: StatRow[] = snap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as FirestoreStat),
+      }));
+      rows.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+      return rows;
+    },
+  });
+}
+
+export function useSaveStat() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: { id?: string; data: FirestoreStat }) => {
+      const db = requireDb();
+      if (payload.id) {
+        await updateDoc(doc(db, "stats", payload.id), {
+          label: payload.data.label,
+          value: Number(payload.data.value),
+          suffix: payload.data.suffix,
+          subtext: payload.data.subtext,
+          iconName: payload.data.iconName,
+          order: Number(payload.data.order),
+        });
+        return;
+      }
+      await addDoc(collection(db, "stats"), {
+        ...payload.data,
+        value: Number(payload.data.value),
+        order: Number(payload.data.order),
+        createdAt: serverTimestamp(),
+      });
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "stats"] });
+    },
+  });
+}
+
+export function useDeleteStat() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const db = requireDb();
+      await deleteDoc(doc(db, "stats", id));
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "stats"] });
     },
   });
 }

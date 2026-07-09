@@ -12,6 +12,7 @@ import {
   Video,
   TrendingUp,
   BookOpen,
+  BarChart3,
 } from "lucide-react";
 import { NavLink } from "./NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -40,6 +41,7 @@ const mainItems = [
   { title: "Videos", url: "/admin/videos", icon: Video },
   { title: "Case Studies", url: "/admin/case-studies", icon: TrendingUp },
   { title: "Knowledge Base", url: "/admin/knowledge-base", icon: BookOpen },
+  { title: "Stats", url: "/admin/stats", icon: BarChart3 },
   { title: "Inquiries", url: "/admin/inquiries", icon: MessageSquare },
 ];
 

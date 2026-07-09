@@ -285,3 +285,60 @@ export async function seedKnowledgeBaseToFirestore(): Promise<void> {
   await batch.commit();
 }
 
+export async function seedStatsToFirestore(): Promise<void> {
+  const db = getDb();
+  if (!db) throw new Error("Firebase is not configured.");
+  const batch = writeBatch(db);
+  const defaultStats = [
+    { 
+      value: 50000, 
+      suffix: "+", 
+      label: "Farmers Empowered", 
+      subtext: "Farmers across India trust our advisory services for sustainable crop yields and modern practices.",
+      iconName: "Users",
+      order: 1
+    },
+    { 
+      value: 85, 
+      suffix: "%", 
+      label: "Increase in Crop Yields", 
+      subtext: "Proven yield increase through scientific crop protection and precise input recommendations.",
+      iconName: "TrendingUp",
+      order: 2
+    },
+    { 
+      value: 30, 
+      suffix: "%", 
+      label: "Rise in Farmer Incomes", 
+      subtext: "Direct increase in crop quality and efficiency translates to higher household earnings.",
+      iconName: "IndianRupee",
+      order: 3
+    },
+    { 
+      value: 75, 
+      suffix: "%", 
+      label: "Reduction in Pest Losses", 
+      subtext: "Early diagnostic tools prevent major infestations before they spread.",
+      iconName: "Shield",
+      order: 4
+    },
+    { 
+      value: 200, 
+      suffix: "+", 
+      label: "Crops Covered", 
+      subtext: "Extensive consulting sheets for grains, organic vegetables, and cash crops.",
+      iconName: "Leaf",
+      order: 5
+    },
+  ];
+
+  defaultStats.forEach((stat, idx) => {
+    const ref = doc(db, "stats", `stat-${idx + 1}`);
+    batch.set(ref, {
+      ...stat,
+      createdAt: serverTimestamp(),
+    });
+  });
+  await batch.commit();
+}
+
