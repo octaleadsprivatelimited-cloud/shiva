@@ -120,10 +120,11 @@ export const Header = () => {
               alt="Shiva Agri Clinic"
               className="h-14 w-14 md:h-16 md:w-16 object-contain object-center drop-shadow-[0_0_3px_rgba(255,255,255,0.85)]"
             />
-            <div className="flex items-center font-heading font-bold text-lg sm:text-xl">
+            <div className="flex items-center font-heading font-bold text-base sm:text-lg md:text-xl">
               <span className="text-primary-foreground">Shiva</span>
-              <span className="text-accent ml-0.5">Agri</span>
-              <div className="w-1.5 h-1.5 bg-accent rounded-full ml-0.5 mt-1" />
+              <span className="text-accent ml-1">Agri</span>
+              <span className="text-primary-foreground ml-1">Clinic</span>
+              <div className="w-1.5 h-1.5 bg-accent rounded-full ml-1 mt-1" />
             </div>
           </Link>
 

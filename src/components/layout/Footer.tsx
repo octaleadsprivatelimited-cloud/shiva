@@ -151,8 +151,9 @@ export const Footer = () => {
               />
               <div className="flex items-center font-heading font-bold text-xl sm:text-2xl">
                 <span className="text-primary-foreground">Shiva</span>
-                <span className="text-accent ml-0.5">Agri</span>
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full ml-0.5 mt-1 sm:mt-1.5" />
+                <span className="text-accent ml-1">Agri</span>
+                <span className="text-primary-foreground ml-1">Clinic</span>
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full ml-1 mt-1 sm:mt-1.5" />
               </div>
             </Link>
             <p className="text-primary-foreground/70 mb-4 sm:mb-6 max-w-sm text-sm sm:text-base">
