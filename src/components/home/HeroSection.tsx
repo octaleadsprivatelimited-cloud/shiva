@@ -14,10 +14,10 @@ const slides = [
   {
     id: 1,
     image: heroFarmland,
-    title: "India's Leading",
-    highlight: "Agricultural Experts",
-    subtitle: "for Modern Farming",
-    description: "Shiva Agri Clinic provides comprehensive agricultural solutions, expert consultations, and cutting-edge farming technologies to help farmers across India achieve better yields and sustainable practices.",
+    title: "Welcome to",
+    highlight: "Shiva Agri Clinic",
+    subtitle: "",
+    description: "Providing expert agricultural guidance, innovative farming technologies, crop protection solutions, machinery information, and farmer education to help every farmer achieve higher productivity and sustainable income.",
     cta: { label: "Know More About Us", href: "/about" },
   },
   {

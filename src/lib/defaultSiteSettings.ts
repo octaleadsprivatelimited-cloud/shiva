@@ -2,9 +2,9 @@ import type { SiteSettings } from "@/types/cms";
 
 export const defaultSiteSettings: SiteSettings = {
   siteName: "Shiva Agri Clinic",
-  tagline: "Empowering Farmers with Expert Knowledge",
+  tagline: "Knowledge that Grows Prosperity.",
   description:
-    "Shiva Agri Clinic provides comprehensive agricultural solutions including crop advisory, pest management, soil testing, and smart farming technologies.",
+    "Shiva Agri Clinic is a trusted agricultural knowledge platform dedicated to empowering farmers with the latest farming practices, modern technologies, crop management techniques, government schemes, agricultural machinery, and expert guidance. Founded by G. Shiva Kumar, National Youth Awardee (Government of India).",
   phone: "+91 70135 70447",
   email: "info@shivaagriclinic.com",
   youtube: "https://www.youtube.com/@ShivaAgriClinic",

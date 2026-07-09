@@ -11,7 +11,7 @@ interface SEOProps {
 }
 
 const defaultTitle = "Shiva Agri Clinic - India's Leading Agricultural Solutions Provider";
-const defaultDescription = "Shiva Agri Clinic provides expert agricultural consulting, crop management, pest control solutions, and smart farming technologies to farmers across India. Founded by Shiva Kumar.";
+const defaultDescription = "Shiva Agri Clinic provides expert agricultural consulting, crop management, pest control solutions, and smart farming technologies to farmers across India. Founded by G. Shiva Kumar, National Youth Awardee (Government of India).";
 const defaultImage = "/og-image.png";
 const siteUrl = "https://shivaagriclinic.com";
 
@@ -75,7 +75,7 @@ export const SEO = ({
     updateMetaTag("twitter:site", "@ShivaAgriClinic");
 
     // Additional SEO tags
-    updateMetaTag("author", "Shiva Kumar");
+    updateMetaTag("author", "G. Shiva Kumar");
     updateMetaTag("theme-color", "#0d3b2d");
   }, [fullTitle, description, keywords, fullImage, currentUrl, type, noindex]);
 

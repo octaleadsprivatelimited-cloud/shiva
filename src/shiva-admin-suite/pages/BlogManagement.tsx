@@ -34,7 +34,7 @@ const emptyForm = (): FirestoreBlogPost => ({
   content: "",
   category: "",
   date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
-  author: "Shiva Kumar",
+  author: "G. Shiva Kumar",
   readTime: "5 min read",
   imageUrl: "",
   status: "draft",

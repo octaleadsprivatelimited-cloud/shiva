@@ -11,8 +11,8 @@ const About = () => {
     <Layout>
       <SEO
         title="About Us"
-        description="Learn about Shiva Agri Clinic, founded by Shiva Kumar. We empower farmers across India with expert agricultural knowledge, modern farming techniques, and sustainable practices. Serving 50,000+ farmers."
-        keywords="about Shiva Agri Clinic, Shiva Kumar, agricultural company India, farming solutions, agricultural expertise"
+        description="Learn about Shiva Agri Clinic, founded by G. Shiva Kumar, National Youth Awardee (Government of India). We empower farmers with agricultural education, modern technologies, and sustainable practices."
+        keywords="about Shiva Agri Clinic, G. Shiva Kumar, National Youth Awardee, agricultural company India, farming solutions, agricultural education"
       />
       {/* Hero */}
       <section className="relative pt-32 pb-20 text-white overflow-hidden">
@@ -24,7 +24,7 @@ const About = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">About Shiva Agri Clinic</h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Empowering farmers with expert agricultural solutions since our founding by Shiva Kumar.
+            Empowering farmers with expert agricultural solutions since our founding by G. Shiva Kumar.
           </p>
         </div>
       </section>
@@ -34,18 +34,26 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <img src={founderImage} alt="Shiva Kumar - Founder" className="rounded-2xl shadow-lg" />
+              <img src={founderImage} alt="G. Shiva Kumar - Founder" className="rounded-2xl shadow-lg w-full max-w-md mx-auto object-cover" />
             </div>
             <div>
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Story</span>
-              <h2 className="text-3xl font-heading font-bold mt-2 mb-6">Founded by Shiva Kumar</h2>
-              <p className="text-muted-foreground mb-4">
-                Shiva Agri Clinic was founded with a simple mission: to make expert agricultural knowledge accessible to every farmer in India. Our founder, Shiva Kumar, recognized the challenges faced by farmers and dedicated himself to bridging the gap between traditional farming and modern agricultural science.
-              </p>
-              <p className="text-muted-foreground mb-6">
-                Today, we serve over 50,000 farmers across India, providing comprehensive agricultural solutions from crop advisory to smart farming technologies.
-              </p>
-              <div className="flex gap-4 flex-wrap">
+              <h2 className="text-3xl font-heading font-bold mt-2 mb-6">Founded by G. Shiva Kumar</h2>
+              <div className="space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
+                <p>
+                  <strong>Shiva Agri Clinic</strong> is a farmer-focused agricultural education platform dedicated to empowering farmers with practical knowledge, modern farming technologies, and sustainable agricultural practices. Founded by <strong>G. Shiva Kumar</strong>, <strong>National Youth Awardee (Government of India)</strong>, our mission is to bridge the gap between scientific agriculture and field-level farming by delivering reliable, easy-to-understand, and practical information.
+                </p>
+                <p>
+                  Through our digital platforms, we share crop cultivation techniques, pest and disease management, farm mechanization, organic farming, government schemes, farmer success stories, and expert guidance to help farmers improve productivity and profitability.
+                </p>
+                <p>
+                  Shiva Agri Clinic has built a strong presence on <strong>YouTube, Facebook, Instagram, and other social media platforms</strong>, reaching lakhs of farmers with educational videos, field demonstrations, agricultural updates, and innovative farming solutions. Our goal is to create an informed farming community by making quality agricultural knowledge accessible to everyone.
+                </p>
+                <p className="font-semibold text-foreground/90 italic">
+                  At Shiva Agri Clinic, we believe that "Empowering Farmers Through Knowledge and Innovation" is the key to building a sustainable and prosperous future for agriculture.
+                </p>
+              </div>
+              <div className="flex gap-4 flex-wrap mt-6">
                 <a href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline"><Youtube className="mr-2 w-4 h-4" />YouTube</Button>
                 </a>
@@ -61,6 +69,32 @@ const About = () => {
                 <a href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline"><Linkedin className="mr-2 w-4 h-4" />LinkedIn</Button>
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-16 bg-muted/40 border-y border-border">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="bg-card p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-accent text-xs font-bold uppercase tracking-wider block mb-2">Our Intent</span>
+                <h3 className="text-2xl font-heading font-bold text-foreground mb-4">Mission</h3>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                  To empower farmers with modern agricultural knowledge, innovative technologies, and sustainable farming solutions that improve productivity, profitability, and rural livelihoods.
+                </p>
+              </div>
+            </div>
+            <div className="bg-card p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-accent text-xs font-bold uppercase tracking-wider block mb-2">Our Target</span>
+                <h3 className="text-2xl font-heading font-bold text-foreground mb-4">Vision</h3>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                  To become India's most trusted digital agricultural knowledge platform, inspiring every farmer to adopt smart, sustainable, and profitable farming practices.
+                </p>
               </div>
             </div>
           </div>

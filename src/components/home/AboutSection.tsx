@@ -17,13 +17,13 @@ export const AboutSection = () => {
               Paving the Way for Agricultural Excellence Across India
             </h2>
             <p className="text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 md:mb-6 leading-relaxed">
-              Founded by <strong className="text-foreground">Shiva Kumar</strong>, Shiva Agri Clinic is dedicated to empowering farmers with expert agricultural knowledge, modern farming techniques, and sustainable practices.
+              Founded by <strong className="text-foreground">G. Shiva Kumar</strong>, <strong className="text-foreground/80 font-medium">National Youth Awardee (Government of India)</strong>, Shiva Agri Clinic is a farmer-focused agricultural education platform dedicated to empowering farmers with practical knowledge, modern farming technologies, and sustainable practices.
             </p>
             <p className="text-muted-foreground text-xs sm:text-sm md:text-base mb-3 sm:mb-4 md:mb-6 leading-relaxed">
-              Our mission is to bridge the gap between traditional farming wisdom and modern agricultural science. We provide comprehensive solutions including crop advisory, pest management, soil testing, and smart farming technologies to help farmers across India achieve better yields and improved livelihoods.
+              Our mission is to bridge the gap between scientific agriculture and field-level farming by delivering reliable, easy-to-understand, and practical information on crop cultivation, pest control, organic farming, and government schemes.
             </p>
             <p className="text-muted-foreground text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 leading-relaxed">
-              With a growing community of over 50,000 farmers and a presence on YouTube and Instagram, we are committed to making agricultural knowledge accessible to every farmer in India.
+              With a powerful digital presence across YouTube, Facebook, and Instagram, we reach lakhs of farmers across India with educational videos, field demonstrations, and innovative farming solutions.
             </p>
             
             <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 md:gap-4">

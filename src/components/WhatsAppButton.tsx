@@ -2,7 +2,7 @@ import whatsappLogo from "@/assets/whatsapp-logo.png";
 
 const WhatsAppButton = () => {
   const phoneNumber = "917013570447";
-  const message = "Hello Shiva Kumar, I want to know more about your Agri Clinic.";
+  const message = "Hello G. Shiva Kumar, I want to know more about your Agri Clinic.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (

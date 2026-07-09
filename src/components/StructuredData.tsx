@@ -24,7 +24,7 @@ export const StructuredData = ({ type, data }: StructuredDataProps) => {
         description: "India's leading agricultural solutions provider. Expert crop advisory, pest management, and smart farming technologies.",
         founder: {
           "@type": "Person",
-          name: "Shiva Kumar",
+          name: "G. Shiva Kumar",
         },
         contactPoint: {
           "@type": "ContactPoint",

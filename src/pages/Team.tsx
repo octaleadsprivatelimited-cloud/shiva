@@ -6,10 +6,10 @@ import { useTeamMembers } from "@/hooks/useCmsFirestore";
 
 const teamMembers = [
   {
-    name: "Shiva Kumar",
+    name: "G. Shiva Kumar",
     role: "Founder & Chief Agricultural Consultant",
     image: "👨‍🌾",
-    bio: "With over 15 years of experience in agricultural science, Shiva Kumar founded Shiva Agri Clinic to bridge the gap between traditional farming and modern agricultural practices.",
+    bio: "Founded by G. Shiva Kumar, National Youth Awardee (Government of India), Shiva Agri Clinic is a farmer-focused agricultural education platform dedicated to empowering farmers with practical knowledge.",
     social: {
       youtube: "https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt",
       instagram: "https://www.instagram.com/shiva_agriclinic/",
@@ -58,7 +58,7 @@ const Team = () => {
     if (f.image && (f.image.startsWith("http") || f.image.startsWith("data:"))) {
       return f.image;
     }
-    if (f.name === "Shiva Kumar") {
+    if (f.name.includes("Shiva Kumar")) {
       return founderImage;
     }
     return null;
