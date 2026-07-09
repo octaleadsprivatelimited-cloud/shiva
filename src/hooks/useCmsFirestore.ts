@@ -653,18 +653,21 @@ export function useSaveStat() {
       const db = requireDb();
       if (payload.id) {
         await updateDoc(doc(db, "stats", payload.id), {
+          type: payload.data.type,
           label: payload.data.label,
-          value: Number(payload.data.value),
-          suffix: payload.data.suffix,
-          subtext: payload.data.subtext,
+          value: String(payload.data.value),
+          suffix: payload.data.suffix || "",
+          subtext: payload.data.subtext || "",
           iconName: payload.data.iconName,
+          color: payload.data.color || "",
+          bgColor: payload.data.bgColor || "",
           order: Number(payload.data.order),
         });
         return;
       }
       await addDoc(collection(db, "stats"), {
         ...payload.data,
-        value: Number(payload.data.value),
+        value: String(payload.data.value),
         order: Number(payload.data.order),
         createdAt: serverTimestamp(),
       });

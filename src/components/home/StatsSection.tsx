@@ -66,7 +66,7 @@ const useCountUp = (end: number, duration: number = 2000) => {
 
 interface StatItemProps {
   stat: {
-    value: number;
+    value: string;
     suffix: string;
     label: string;
     subtext: string;
@@ -78,7 +78,7 @@ interface StatItemProps {
 }
 
 const StatItem = ({ stat, index, isLarge, className }: StatItemProps) => {
-  const { count, start } = useCountUp(stat.value);
+  const { count, start } = useCountUp(Number(stat.value) || 0);
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const Icon = (Icons as any)[stat.iconName] || Icons.Leaf;
@@ -153,7 +153,9 @@ const StatItem = ({ stat, index, isLarge, className }: StatItemProps) => {
 export const StatsSection = () => {
   const { data: dbStats } = useFirestoreStats();
   
-  const displayStats = dbStats && dbStats.length > 0 ? dbStats : defaultStats;
+  const displayStats = dbStats && dbStats.length > 0 
+    ? dbStats.filter(s => s.type === "impact") 
+    : defaultStats;
 
   return (
     <section id="stats" className="relative bg-primary py-12 sm:py-16 md:py-20 overflow-hidden scroll-mt-20">

@@ -110,11 +110,14 @@ export type FirestoreKnowledgeBaseArticle = {
 }
 
 export type FirestoreStat = {
+  type: "impact" | "social";
   label: string;
-  value: number;
-  suffix: string;
-  subtext: string;
+  value: string;
+  suffix?: string;
+  subtext?: string;
   iconName: string;
+  color?: string;
+  bgColor?: string;
   order: number;
   createdAt?: Timestamp;
 };

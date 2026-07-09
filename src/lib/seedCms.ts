@@ -290,8 +290,10 @@ export async function seedStatsToFirestore(): Promise<void> {
   if (!db) throw new Error("Firebase is not configured.");
   const batch = writeBatch(db);
   const defaultStats = [
+    // Impact Stats (Bento Grid)
     { 
-      value: 50000, 
+      type: "impact" as const,
+      value: "50000", 
       suffix: "+", 
       label: "Farmers Empowered", 
       subtext: "Farmers across India trust our advisory services for sustainable crop yields and modern practices.",
@@ -299,7 +301,8 @@ export async function seedStatsToFirestore(): Promise<void> {
       order: 1
     },
     { 
-      value: 85, 
+      type: "impact" as const,
+      value: "85", 
       suffix: "%", 
       label: "Increase in Crop Yields", 
       subtext: "Proven yield increase through scientific crop protection and precise input recommendations.",
@@ -307,7 +310,8 @@ export async function seedStatsToFirestore(): Promise<void> {
       order: 2
     },
     { 
-      value: 30, 
+      type: "impact" as const,
+      value: "30", 
       suffix: "%", 
       label: "Rise in Farmer Incomes", 
       subtext: "Direct increase in crop quality and efficiency translates to higher household earnings.",
@@ -315,7 +319,8 @@ export async function seedStatsToFirestore(): Promise<void> {
       order: 3
     },
     { 
-      value: 75, 
+      type: "impact" as const,
+      value: "75", 
       suffix: "%", 
       label: "Reduction in Pest Losses", 
       subtext: "Early diagnostic tools prevent major infestations before they spread.",
@@ -323,12 +328,58 @@ export async function seedStatsToFirestore(): Promise<void> {
       order: 4
     },
     { 
-      value: 200, 
+      type: "impact" as const,
+      value: "200", 
       suffix: "+", 
       label: "Crops Covered", 
       subtext: "Extensive consulting sheets for grains, organic vegetables, and cash crops.",
       iconName: "Leaf",
       order: 5
+    },
+    // Social Media Stats
+    { 
+      type: "social" as const,
+      value: "6M+", 
+      suffix: "",
+      label: "YouTube Subscribers",
+      subtext: "",
+      iconName: "Youtube",
+      color: "#FF0000",
+      bgColor: "bg-red-500/10 text-red-500",
+      order: 6
+    },
+    { 
+      type: "social" as const,
+      value: "2M+", 
+      suffix: "",
+      label: "Instagram Followers",
+      subtext: "",
+      iconName: "Instagram",
+      color: "#E1306C",
+      bgColor: "bg-pink-500/10 text-pink-500",
+      order: 7
+    },
+    { 
+      type: "social" as const,
+      value: "2.6M+", 
+      suffix: "",
+      label: "Facebook Followers",
+      subtext: "",
+      iconName: "Facebook",
+      color: "#1877F2",
+      bgColor: "bg-blue-500/10 text-blue-500",
+      order: 8
+    },
+    { 
+      type: "social" as const,
+      value: "5B+", 
+      suffix: "",
+      label: "Total Views",
+      subtext: "",
+      iconName: "Eye",
+      color: "#ff6b35",
+      bgColor: "bg-orange-500/10 text-orange-500",
+      order: 9
     },
   ];
 
@@ -341,4 +392,3 @@ export async function seedStatsToFirestore(): Promise<void> {
   });
   await batch.commit();
 }
-
