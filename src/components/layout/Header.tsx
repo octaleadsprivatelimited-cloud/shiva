@@ -113,13 +113,18 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo - contained inside header by reducing padding */}
-          <Link to="/" onClick={handleLogoClick} className="flex items-center justify-center focus:outline-none h-14 md:h-16 shrink-0">
+          {/* Logo and Name - contained inside header by reducing padding */}
+          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 focus:outline-none h-14 md:h-16 shrink-0">
             <img
               src={logoImage}
               alt="Shiva Agri Clinic"
               className="h-14 w-14 md:h-16 md:w-16 object-contain object-center drop-shadow-[0_0_3px_rgba(255,255,255,0.85)]"
             />
+            <div className="flex items-center font-heading font-bold text-lg sm:text-xl">
+              <span className="text-primary-foreground">Shiva</span>
+              <span className="text-accent ml-0.5">Agri</span>
+              <div className="w-1.5 h-1.5 bg-accent rounded-full ml-0.5 mt-1" />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

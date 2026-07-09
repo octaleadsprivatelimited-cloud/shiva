@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import footerBackground from "@/assets/footer-background.jpeg";
 import { useSiteSettings } from "@/hooks/useCmsFirestore";
 import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
+import logoImage from "@/assets/final logo 1 copy.png";
 
 const footerLinks = {
   services: [
@@ -142,10 +143,17 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 md:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-2 mb-4 md:mb-0">
-            <Link to="/" className="flex items-center mb-4 sm:mb-6">
-              <span className="text-xl sm:text-2xl font-heading font-bold text-primary-foreground">Shiva</span>
-              <span className="text-xl sm:text-2xl font-heading font-bold text-accent">Agri</span>
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full ml-0.5 -mt-3 sm:-mt-4" />
+            <Link to="/" className="flex items-center gap-2 mb-4 sm:mb-6">
+              <img
+                src={logoImage}
+                alt="Shiva Agri Clinic"
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain object-center drop-shadow-[0_0_3px_rgba(255,255,255,0.85)]"
+              />
+              <div className="flex items-center font-heading font-bold text-xl sm:text-2xl">
+                <span className="text-primary-foreground">Shiva</span>
+                <span className="text-accent ml-0.5">Agri</span>
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full ml-0.5 mt-1 sm:mt-1.5" />
+              </div>
             </Link>
             <p className="text-primary-foreground/70 mb-4 sm:mb-6 max-w-sm text-sm sm:text-base">
               {settings.description}
