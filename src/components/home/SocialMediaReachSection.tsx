@@ -52,6 +52,7 @@ export const SocialMediaReachSection = () => {
           </h2>
         </div>
 
+        {/* Modern Grid Cards */}
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {displayStats.map((stat, index) => {
@@ -60,36 +61,35 @@ export const SocialMediaReachSection = () => {
                 <div
                   key={index}
                   className={cn(
-                    "relative rounded-2xl bg-card border border-border p-5 sm:p-6 md:p-8 flex flex-col justify-between",
-                    "shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-accent/30",
-                    "transition-all duration-300 ease-in-out group min-h-[160px] sm:min-h-[180px] md:min-h-[220px]"
+                    "relative rounded-2xl bg-card border border-border p-6 sm:p-8 flex flex-col items-center text-center justify-center",
+                    "shadow-sm hover:shadow-lg hover:-translate-y-1.5",
+                    "transition-all duration-300 ease-out group min-h-[180px] sm:min-h-[200px] overflow-hidden"
                   )}
+                  style={{ 
+                    borderTop: `4px solid ${stat.color || '#4caf50'}`,
+                    background: `linear-gradient(180deg, ${(stat.color || '#4caf50')}04 0%, transparent 100%)`
+                  }}
                 >
-                  <div 
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-[0.02] transition-opacity duration-300 pointer-events-none" 
-                    style={{ backgroundColor: stat.color }}
-                  />
-                  
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={cn(
-                      "w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-all duration-300",
-                      "group-hover:scale-110",
-                      stat.bgColor
-                    )}>
-                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                    </div>
+                  {/* Brand Icon Container */}
+                  <div className={cn(
+                    "w-12 h-12 rounded-full flex items-center justify-center mb-4 transition-all duration-300",
+                    "group-hover:scale-110 group-hover:shadow-sm",
+                    stat.bgColor
+                  )}>
+                    <Icon className="w-6 h-6" />
                   </div>
                   
-                  <div>
-                    <div 
-                      className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-1 tracking-tight"
-                      style={{ color: stat.color }}
-                    >
-                      {stat.value}
-                    </div>
-                    <div className="text-xs sm:text-sm md:text-base font-semibold text-foreground/80 leading-snug">
-                      {stat.label}
-                    </div>
+                  {/* Stat Value */}
+                  <div 
+                    className="text-3xl sm:text-4xl font-heading font-extrabold mb-1 tracking-tight transition-transform duration-300 group-hover:scale-105"
+                    style={{ color: stat.color }}
+                  >
+                    {stat.value}
+                  </div>
+                  
+                  {/* Description */}
+                  <div className="text-xs sm:text-sm font-semibold text-muted-foreground transition-colors duration-300 group-hover:text-foreground leading-snug">
+                    {stat.label}
                   </div>
                 </div>
               );
