@@ -278,7 +278,7 @@ const StatsManagement = () => {
               {form.type === "impact" ? "Impact Statistic" : "Social Media Statistic"}
             </DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 py-2">
+          <div className="max-h-[60vh] overflow-y-auto pr-2 py-2 space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="stat-value">Statistic Value</Label>
