@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Play, Youtube, ExternalLink, X, Clock, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useFirestoreStats } from "@/hooks/useCmsFirestore";
 
 const videos = [
   { id: "LXF8l0jNKII", title: "Farmer Safety Shoes | Agriculture & Paddy Shoes", category: "Farm Equipment", views: "", duration: "" },
@@ -18,6 +19,27 @@ const videos = [
 
 export const VideoSection = () => {
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+  const { data: dbStats } = useFirestoreStats();
+
+  const getStatValue = (keywords: string[], fallback: string) => {
+    if (!dbStats) return fallback;
+    const match = dbStats.find((s) => 
+      keywords.every((kw) => s.label.toLowerCase().includes(kw))
+    );
+    return match ? match.value : fallback;
+  };
+
+  const subscribersVal = getStatValue(["youtube", "subscriber"], "50K+");
+  const videosVal = getStatValue(["video"], "200+");
+  const viewsVal = getStatValue(["views"], "5M+");
+  const languagesVal = getStatValue(["language"], "Hindi & Telugu");
+
+  const statItems = [
+    { label: "Subscribers", value: subscribersVal },
+    { label: "Videos", value: videosVal },
+    { label: "Total Views", value: viewsVal },
+    { label: "Languages", value: languagesVal },
+  ];
 
   const handlePlayVideo = (videoId: string) => {
     setPlayingVideo(videoId);
@@ -121,12 +143,7 @@ export const VideoSection = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 p-4 md:p-6 bg-primary-foreground/5 rounded-xl md:rounded-2xl border border-primary-foreground/10">
-            {[
-              { label: "Subscribers", value: "50K+" },
-              { label: "Videos", value: "200+" },
-              { label: "Total Views", value: "5M+" },
-              { label: "Languages", value: "Hindi & Telugu" },
-            ].map((stat) => (
+            {statItems.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-accent">
                   {stat.value}
