@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MutationCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { RequireAdmin } from "@/shiva-admin-suite/components/RequireAdmin";
@@ -48,8 +48,28 @@ import AdminVideosManagement from "./shiva-admin-suite/pages/VideosManagement";
 import AdminCaseStudiesManagement from "./shiva-admin-suite/pages/CaseStudiesManagement";
 import AdminKnowledgeBaseManagement from "./shiva-admin-suite/pages/KnowledgeBaseManagement";
 import AdminStatsManagement from "./shiva-admin-suite/pages/StatsManagement";
+import AdminBrandPartnersManagement from "./shiva-admin-suite/pages/BrandPartnersManagement";
+import { broadcastCmsChange, listenForCmsChanges } from "@/lib/cmsSync";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  mutationCache: new MutationCache({
+    onSuccess: () => broadcastCmsChange(),
+  }),
+  defaultOptions: {
+    queries: {
+      // Admin and public pages can be open in different tabs. Re-check Firestore
+      // regularly and whenever a tab regains focus so CMS edits become visible.
+      refetchOnWindowFocus: "always",
+      refetchOnReconnect: "always",
+      refetchInterval: 5_000,
+      refetchIntervalInBackground: true,
+    },
+  },
+});
+
+listenForCmsChanges(() => {
+  void queryClient.invalidateQueries({ queryKey: ["cms"] });
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -67,6 +87,12 @@ const App = () => (
           <Route path="/services/crop-advisory" element={<CropAdvisory />} />
           <Route path="/services/pest-management" element={<PestManagement />} />
           <Route path="/services/organic-farming" element={<OrganicFarming />} />
+
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/seeds" element={<Seeds />} />
+          <Route path="/products/fertilizers" element={<Fertilizers />} />
+          <Route path="/products/pesticides" element={<Pesticides />} />
+          <Route path="/products/equipment" element={<Equipment />} />
 
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/solutions/smart-farming" element={<SmartFarming />} />
@@ -92,6 +118,7 @@ const App = () => (
             <Route path="products" element={<AdminProductManagement />} />
             <Route path="careers" element={<AdminCareersManagement />} />
             <Route path="team" element={<AdminTeamManagement />} />
+            <Route path="partners" element={<AdminBrandPartnersManagement />} />
             <Route path="videos" element={<AdminVideosManagement />} />
             <Route path="case-studies" element={<AdminCaseStudiesManagement />} />
             <Route path="knowledge-base" element={<AdminKnowledgeBaseManagement />} />

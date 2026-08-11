@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Play, Youtube, ExternalLink, X, Clock, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useFirestoreStats } from "@/hooks/useCmsFirestore";
+import { useFirestoreStats, useVideos } from "@/hooks/useCmsFirestore";
 
-const videos = [
+const defaultVideos = [
   { id: "LXF8l0jNKII", title: "Farmer Safety Shoes | Agriculture & Paddy Shoes", category: "Farm Equipment", views: "", duration: "" },
   { id: "po9-ZxJuWok", title: "Elevated Shed Goat & Sheep Farming | Goat Farm", category: "Animal Farming", views: "", duration: "" },
   { id: "UYU4vo_lWbw", title: "Jasmine Cultivation In Telugu | Flowers Farming", category: "Flower Farming", views: "", duration: "" },
@@ -20,19 +20,19 @@ const videos = [
 export const VideoSection = () => {
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
   const { data: dbStats } = useFirestoreStats();
+  const { data: cmsVideos = [] } = useVideos();
+  const videos = cmsVideos.length > 0 ? cmsVideos.slice(0, 10) : defaultVideos;
 
-  const getStatValue = (keywords: string[], fallback: string) => {
+  const getStatValue = (label: string, fallback: string) => {
     if (!dbStats) return fallback;
-    const match = dbStats.find((s) => 
-      keywords.every((kw) => s.label.toLowerCase().includes(kw))
-    );
+    const match = dbStats.find((s) => s.type === "video" && s.label === label);
     return match ? match.value : fallback;
   };
 
-  const subscribersVal = getStatValue(["youtube", "subscriber"], "50K+");
-  const videosVal = getStatValue(["video"], "200+");
-  const viewsVal = getStatValue(["views"], "5M+");
-  const languagesVal = getStatValue(["language"], "Hindi & Telugu");
+  const subscribersVal = getStatValue("Video Subscribers", "50K+");
+  const videosVal = getStatValue("Published Videos", "200+");
+  const viewsVal = getStatValue("Video Views", "5M+");
+  const languagesVal = getStatValue("Video Languages", "Hindi & Telugu");
 
   const statItems = [
     { label: "Subscribers", value: subscribersVal },

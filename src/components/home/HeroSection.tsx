@@ -9,6 +9,8 @@ import sustainableFarming from "@/assets/sustainable-farming.jpg";
 import supplyChain from "@/assets/supply-chain.jpg";
 import heroGallery1 from "@/assets/gallery/6142.jpg.jpeg";
 import heroGallery2 from "@/assets/gallery/6229.jpg.jpeg";
+import { useSiteSettings } from "@/hooks/useCmsFirestore";
+import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
 
 const slides = [
   {
@@ -68,12 +70,16 @@ const slides = [
 ];
 
 export const HeroSection = () => {
+  const { data: settings = defaultSiteSettings } = useSiteSettings();
+  const displaySlides = slides.map((slide, index) => index === 0
+    ? { ...slide, highlight: settings.siteName, description: settings.description }
+    : slide);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      goToSlide((currentSlide + 1) % slides.length);
+      goToSlide((currentSlide + 1) % displaySlides.length);
     }, 6000);
     return () => clearInterval(timer);
   }, [currentSlide]);
@@ -86,17 +92,17 @@ export const HeroSection = () => {
   };
 
   const prevSlide = () => {
-    goToSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
+    goToSlide(currentSlide === 0 ? displaySlides.length - 1 : currentSlide - 1);
   };
 
   const nextSlide = () => {
-    goToSlide((currentSlide + 1) % slides.length);
+    goToSlide((currentSlide + 1) % displaySlides.length);
   };
 
   return (
     <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden">
       {/* Background Images */}
-      {slides.map((slide, index) => (
+      {displaySlides.map((slide, index) => (
         <div
           key={slide.id}
           className={cn(
@@ -117,7 +123,7 @@ export const HeroSection = () => {
       <div className="relative z-10 h-full flex items-center">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-primary-foreground">
-            {slides.map((slide, index) => (
+            {displaySlides.map((slide, index) => (
               <div
                 key={slide.id}
                 className={cn(
@@ -166,7 +172,7 @@ export const HeroSection = () => {
 
       {/* Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-        {slides.map((_, index) => (
+        {displaySlides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}

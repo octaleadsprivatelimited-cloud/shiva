@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import logoImage from "@/assets/final logo 1 copy.png";
+import { useSiteSettings } from "@/hooks/useCmsFirestore";
+import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
 
 type NavItem = {
   label: string;
@@ -66,6 +68,7 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { scrollToSection } = useSmoothScroll();
+  const { data: settings = defaultSiteSettings } = useSiteSettings();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,13 +120,11 @@ export const Header = () => {
           <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 focus:outline-none h-14 md:h-16 shrink-0">
             <img
               src={logoImage}
-              alt="Shiva Agri Clinic"
+              alt={settings.siteName}
               className="h-14 w-14 md:h-16 md:w-16 object-contain object-center drop-shadow-[0_0_3px_rgba(255,255,255,0.85)]"
             />
             <div className="flex items-center font-heading font-bold text-base sm:text-lg md:text-xl">
-              <span className="text-primary-foreground">Shiva</span>
-              <span className="text-accent ml-1">Agri</span>
-              <span className="text-primary-foreground ml-1">Clinic</span>
+              <span className="text-primary-foreground">{settings.siteName}</span>
               <div className="w-1.5 h-1.5 bg-accent rounded-full ml-1 mt-1" />
             </div>
           </Link>
@@ -189,7 +190,7 @@ export const Header = () => {
             
             <div className="flex items-center gap-2">
               <a
-                href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt"
+                href={settings.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -200,7 +201,7 @@ export const Header = () => {
                 <Youtube className="w-5 h-5" />
               </a>
               <a
-                href="https://www.instagram.com/shiva_agriclinic/"
+                href={settings.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -211,7 +212,7 @@ export const Header = () => {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://www.facebook.com/share/175Yh7bMWg/"
+                href={settings.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -222,7 +223,7 @@ export const Header = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://x.com/ShivaAgriClinic"
+                href={settings.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -233,7 +234,7 @@ export const Header = () => {
                 <Twitter className="w-5 h-5" />
               </a>
               <a
-                href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                href={settings.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -303,19 +304,19 @@ export const Header = () => {
             ))}
             <div className="mt-4 pt-4 border-t border-border flex flex-col gap-3">
               <div className="flex justify-center gap-4">
-                <a href="https://youtube.com/@shivaagriclinic?si=tOPmSbMB-e4gMwIt" target="_blank" rel="noopener noreferrer">
+                <a href={settings.youtube} target="_blank" rel="noopener noreferrer">
                   <Youtube className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
                 </a>
-                <a href="https://www.instagram.com/shiva_agriclinic/" target="_blank" rel="noopener noreferrer">
+                <a href={settings.instagram} target="_blank" rel="noopener noreferrer">
                   <Instagram className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
                 </a>
-                <a href="https://www.facebook.com/share/175Yh7bMWg/" target="_blank" rel="noopener noreferrer">
+                <a href={settings.facebook} target="_blank" rel="noopener noreferrer">
                   <Facebook className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
                 </a>
-                <a href="https://x.com/ShivaAgriClinic" target="_blank" rel="noopener noreferrer">
+                <a href={settings.twitter} target="_blank" rel="noopener noreferrer">
                   <Twitter className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
                 </a>
-                <a href="https://www.linkedin.com/in/shiva-agri-clinic-0287483a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">
+                <a href={settings.linkedin} target="_blank" rel="noopener noreferrer">
                   <Linkedin className="w-6 h-6 text-muted-foreground hover:text-accent transition-colors" />
                 </a>
               </div>

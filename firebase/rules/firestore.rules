@@ -15,6 +15,12 @@ service cloud.firestore {
             && request.resource.data.imageUrl.size() < 650000);
     }
 
+    function teamImageOk() {
+      return !('image' in request.resource.data)
+        || (request.resource.data.image is string
+            && request.resource.data.image.size() < 650000);
+    }
+
     function validInquiry() {
       let d = request.resource.data;
       return d.keys().hasAll(['name', 'email', 'message', 'createdAt'])
@@ -61,7 +67,17 @@ service cloud.firestore {
 
     match /teamMembers/{memberId} {
       allow read: if true;
-      allow create, update, delete: if isAdmin();
+      allow create, update: if isAdmin() && teamImageOk();
+      allow delete: if isAdmin();
+    }
+
+    match /brandPartners/{partnerId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.name is string
+        && request.resource.data.logo is string
+        && request.resource.data.logo.size() < 650000;
+      allow delete: if isAdmin();
     }
 
     match /videos/{videoId} {
