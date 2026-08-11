@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout";
-import { defaultGalleryHero, defaultGalleryItems } from "@/data/galleryData";
+import { defaultGalleryHero, defaultGalleryItems, resolveGalleryImageUrl } from "@/data/galleryData";
 import { useGalleryItems } from "@/hooks/useCmsFirestore";
 
 type GridItem = {
@@ -20,7 +20,7 @@ const Gallery = () => {
           key: row.id,
           title: row.title,
           category: row.category,
-          image: row.imageUrl,
+          image: resolveGalleryImageUrl(row.id, row.imageUrl),
           type: row.type,
           videoUrl: row.videoUrl ?? undefined,
         }))
