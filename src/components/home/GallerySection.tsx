@@ -30,6 +30,7 @@ import img6287 from "@/assets/gallery/6287.jpg.jpeg";
 import img6291 from "@/assets/gallery/6291.jpg.jpeg";
 import img9709 from "@/assets/gallery/9709.jpg.jpeg";
 import { useGalleryItems } from "@/hooks/useCmsFirestore";
+import { resolveGalleryImageUrl } from "@/data/galleryData";
 
 const defaultGalleryItems = [
   {
@@ -95,9 +96,17 @@ const defaultGalleryItems = [
 export const GallerySection = () => {
   const { data: cmsItems = [] } = useGalleryItems();
   const galleryItems = cmsItems.length > 0
-    ? cmsItems
+    ? [
+        ...defaultGalleryItems.slice(0, 6).map((item) => ({ ...item, id: `featured-${item.id}` })),
+        ...cmsItems
         .filter((item) => item.type === "image" && Boolean(item.imageUrl))
-        .map((item) => ({ id: item.id, image: item.imageUrl, title: item.title, category: item.category }))
+        .map((item) => ({
+          id: item.id,
+          image: resolveGalleryImageUrl(item.id, item.imageUrl),
+          title: item.title,
+          category: item.category,
+        })),
+      ]
     : defaultGalleryItems;
   const categories = ["All", ...Array.from(new Set(galleryItems.map((item) => item.category)))];
   const [selectedCategory, setSelectedCategory] = useState("All");

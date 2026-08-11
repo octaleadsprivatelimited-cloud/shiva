@@ -469,12 +469,8 @@ export function useBrandPartners() {
         id: d.id,
         ...(d.data() as FirestoreBrandPartner),
       }));
-      const savedById = new Map(rows.map((item) => [item.id, item]));
-      const merged = defaultCmsStats.map((item) => savedById.get(item.id) ?? item);
-      const defaultIds = new Set(defaultCmsStats.map((item) => item.id));
-      merged.push(...rows.filter((item) => !defaultIds.has(item.id)));
-      merged.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-      return merged;
+      rows.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+      return rows;
     },
   });
 }
@@ -701,8 +697,12 @@ export function useFirestoreStats() {
         id: d.id,
         ...(d.data() as FirestoreStat),
       }));
-      rows.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-      return rows;
+      const savedById = new Map(rows.map((item) => [item.id, item]));
+      const merged = defaultCmsStats.map((item) => savedById.get(item.id) ?? item);
+      const defaultIds = new Set(defaultCmsStats.map((item) => item.id));
+      merged.push(...rows.filter((item) => !defaultIds.has(item.id)));
+      merged.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+      return merged;
     },
   });
 }

@@ -31,13 +31,13 @@ export const PartnersSection = () => {
                 href={partner.website || undefined}
                 target={partner.website ? "_blank" : undefined}
                 rel={partner.website ? "noopener noreferrer" : undefined}
-                className="px-4 md:px-6 py-3 bg-muted rounded-lg border border-border flex items-center justify-center h-16 md:h-20 w-32 md:w-40"
+                className="p-1.5 bg-white rounded-lg border border-border flex items-center justify-center h-16 md:h-20 w-32 md:w-40 overflow-hidden"
                 aria-label={partner.website ? `Visit ${partner.alt}` : partner.alt}
               >
                 <img
                   src={partner.image}
                   alt={partner.alt}
-                  className="max-h-full max-w-full object-contain"
+                  className="h-full w-full object-contain"
                   loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -64,13 +64,13 @@ export const PartnersSection = () => {
                 href={partner.website || undefined}
                 target={partner.website ? "_blank" : undefined}
                 rel={partner.website ? "noopener noreferrer" : undefined}
-                className="px-4 md:px-6 py-3 bg-muted rounded-lg border border-border flex items-center justify-center h-16 md:h-20 w-32 md:w-40"
+                className="p-1.5 bg-white rounded-lg border border-border flex items-center justify-center h-16 md:h-20 w-32 md:w-40 overflow-hidden"
                 aria-label={partner.website ? `Visit ${partner.alt}` : partner.alt}
               >
                 <img
                   src={partner.image}
                   alt={partner.alt}
-                  className="max-h-full max-w-full object-contain"
+                  className="h-full w-full object-contain"
                   loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;

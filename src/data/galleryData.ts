@@ -55,3 +55,9 @@ export const defaultGalleryItems: DefaultGalleryItem[] = [
   { id: 21, image: img6291, title: "Crop Success", category: "Success Story" },
   { id: 22, image: img9709, title: "Farm Visit", category: "Farm Visit" },
 ];
+
+/** Resolve old Firestore values like /src/assets/... to Vite's production asset URL. */
+export function resolveGalleryImageUrl(id: string | number, imageUrl: string): string {
+  if (!imageUrl.startsWith("/src/assets/")) return imageUrl;
+  return defaultGalleryItems.find((item) => String(item.id) === String(id))?.image ?? imageUrl;
+}
