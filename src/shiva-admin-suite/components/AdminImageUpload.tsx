@@ -78,10 +78,7 @@ export function AdminImageUpload({
           onChange={(e) => void handleFile(e)}
         />
       </div>
-      <p className="text-xs text-muted-foreground">
-        {helperText ??
-          "Images are resized and saved as compressed JPEG in Firestore (no separate storage). Existing HTTPS URLs from imports still work until you replace them."}
-      </p>
+      {helperText ? <p className="text-xs text-muted-foreground">{helperText}</p> : null}
     </div>
   );
 }

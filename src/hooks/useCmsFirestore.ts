@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { getDb } from "@/lib/firebase";
 import { defaultSiteSettings } from "@/lib/defaultSiteSettings";
+import { defaultCmsStats } from "@/data/defaultStats";
 import type {
   FirestoreBlogPost,
   FirestoreGalleryItem,
@@ -28,6 +29,7 @@ import type {
   FirestoreKnowledgeBaseArticle,
   FirestoreStat,
   StatRow,
+  FirestoreBrandPartner,
 } from "@/types/cms";
 
 const SETTINGS_COL = "settings";
@@ -454,6 +456,65 @@ export function useDeleteTeamMember() {
   });
 }
 
+export type BrandPartnerRow = FirestoreBrandPartner & { id: string };
+
+export function useBrandPartners() {
+  return useQuery({
+    queryKey: ["cms", "brandPartners"],
+    queryFn: async () => {
+      const db = getDb();
+      if (!db) return [];
+      const snap = await getDocs(collection(db, "brandPartners"));
+      const rows: BrandPartnerRow[] = snap.docs.map((d) => ({
+        id: d.id,
+        ...(d.data() as FirestoreBrandPartner),
+      }));
+      const savedById = new Map(rows.map((item) => [item.id, item]));
+      const merged = defaultCmsStats.map((item) => savedById.get(item.id) ?? item);
+      const defaultIds = new Set(defaultCmsStats.map((item) => item.id));
+      merged.push(...rows.filter((item) => !defaultIds.has(item.id)));
+      merged.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+      return merged;
+    },
+  });
+}
+
+export function useSaveBrandPartner() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload: { id?: string; data: FirestoreBrandPartner }) => {
+      const db = requireDb();
+      const data = {
+        name: payload.data.name,
+        logo: payload.data.logo,
+        website: payload.data.website ?? "",
+        order: Number(payload.data.order),
+      };
+      if (payload.id) {
+        await updateDoc(doc(db, "brandPartners", payload.id), data);
+        return;
+      }
+      await addDoc(collection(db, "brandPartners"), { ...data, createdAt: serverTimestamp() });
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "brandPartners"] });
+    },
+  });
+}
+
+export function useDeleteBrandPartner() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const db = requireDb();
+      await deleteDoc(doc(db, "brandPartners", id));
+    },
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["cms", "brandPartners"] });
+    },
+  });
+}
+
 export type VideoRow = FirestoreVideo & { id: string };
 
 export function useVideos() {
@@ -652,7 +713,7 @@ export function useSaveStat() {
     mutationFn: async (payload: { id?: string; data: FirestoreStat }) => {
       const db = requireDb();
       if (payload.id) {
-        await updateDoc(doc(db, "stats", payload.id), {
+        await setDoc(doc(db, "stats", payload.id), {
           type: payload.data.type,
           label: payload.data.label,
           value: String(payload.data.value),
@@ -662,7 +723,7 @@ export function useSaveStat() {
           color: payload.data.color || "",
           bgColor: payload.data.bgColor || "",
           order: Number(payload.data.order),
-        });
+        }, { merge: true });
         return;
       }
       await addDoc(collection(db, "stats"), {

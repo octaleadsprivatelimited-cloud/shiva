@@ -13,6 +13,7 @@ import {
   TrendingUp,
   BookOpen,
   BarChart3,
+  Handshake,
 } from "lucide-react";
 import { NavLink } from "./NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -38,6 +39,7 @@ const mainItems = [
   { title: "Products", url: "/admin/products", icon: ShoppingBag },
   { title: "Careers", url: "/admin/careers", icon: Briefcase },
   { title: "Team", url: "/admin/team", icon: Users },
+  { title: "Brand Partners", url: "/admin/partners", icon: Handshake },
   { title: "Videos", url: "/admin/videos", icon: Video },
   { title: "Case Studies", url: "/admin/case-studies", icon: TrendingUp },
   { title: "Knowledge Base", url: "/admin/knowledge-base", icon: BookOpen },

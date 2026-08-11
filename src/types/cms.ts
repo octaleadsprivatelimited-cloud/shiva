@@ -81,6 +81,14 @@ export type FirestoreTeamMember = {
   createdAt?: Timestamp;
 };
 
+export type FirestoreBrandPartner = {
+  name: string;
+  logo: string;
+  website?: string;
+  order: number;
+  createdAt?: Timestamp;
+};
+
 export type FirestoreVideo = {
   id: string;
   title: string;
@@ -110,7 +118,7 @@ export type FirestoreKnowledgeBaseArticle = {
 }
 
 export type FirestoreStat = {
-  type: "impact" | "social";
+  type: "impact" | "social" | "video";
   label: string;
   value: string;
   suffix?: string;
@@ -123,4 +131,3 @@ export type FirestoreStat = {
 };
 
 export type StatRow = { id: string } & FirestoreStat;
-

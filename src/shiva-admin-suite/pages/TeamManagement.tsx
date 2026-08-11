@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useDeleteTeamMember, useTeamMembers, useSaveTeamMember } from "@/hooks/useCmsFirestore";
 import type { FirestoreTeamMember } from "@/types/cms";
+import { AdminImageUpload } from "../components/AdminImageUpload";
 
 const emptyTeamMember = (): FirestoreTeamMember => ({
   name: "",
@@ -37,6 +38,7 @@ const TeamManagement = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState<FirestoreTeamMember>(emptyTeamMember());
   const [editingId, setEditingId] = useState<string | null>(null);
+  const isImageSource = (value: string) => value.startsWith("data:image/") || value.startsWith("http");
 
   const openNew = () => {
     setEditingId(null);
@@ -111,8 +113,12 @@ const TeamManagement = () => {
             <Card key={member.id} className="hover:shadow-sm transition-shadow">
               <CardContent className="p-4 flex items-start gap-4 justify-between">
                 <div className="flex gap-3">
-                  <div className="text-4xl w-12 h-12 bg-secondary rounded-lg flex items-center justify-center shrink-0">
-                    {member.image}
+                  <div className="text-4xl w-12 h-12 bg-secondary rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
+                    {isImageSource(member.image) ? (
+                      <img src={member.image} alt={member.name} className="h-full w-full object-cover" />
+                    ) : (
+                      member.image || "👤"
+                    )}
                   </div>
                   <div className="min-w-0">
                     <h3 className="font-semibold text-base truncate">{member.name}</h3>
@@ -153,7 +159,7 @@ const TeamManagement = () => {
       </div>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editingId ? "Edit Team Member" : "New Team Member"}</DialogTitle>
           </DialogHeader>
@@ -166,10 +172,13 @@ const TeamManagement = () => {
               <Label>Role/Designation</Label>
               <Input value={form.role} onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))} />
             </div>
-            <div className="space-y-2">
-              <Label>Avatar/Image (Emoji or URL)</Label>
-              <Input value={form.image} onChange={(e) => setForm((f) => ({ ...f, image: e.target.value }))} />
-            </div>
+            <AdminImageUpload
+              label="Team member photo"
+              value={isImageSource(form.image) ? form.image : ""}
+              onChange={(image) => setForm((f) => ({ ...f, image }))}
+              onClear={() => setForm((f) => ({ ...f, image: "" }))}
+              disabled={saveTeamMember.isPending}
+            />
             <div className="space-y-2">
               <Label>Bio</Label>
               <Textarea

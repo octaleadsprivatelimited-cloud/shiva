@@ -25,15 +25,15 @@ import { seedStatsToFirestore } from "@/lib/seedCms";
 import * as Icons from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const emptyStat = (type: "impact" | "social"): FirestoreStat => ({
+const emptyStat = (type: FirestoreStat["type"]): FirestoreStat => ({
   type,
   label: "",
   value: "",
   suffix: "",
   subtext: "",
-  iconName: type === "impact" ? "Leaf" : "Youtube",
-  color: type === "social" ? "#FF0000" : "",
-  bgColor: type === "social" ? "bg-red-500/10 text-red-500" : "",
+  iconName: type === "impact" ? "Leaf" : type === "video" ? "Video" : "Youtube",
+  color: type === "impact" ? "" : "#FF0000",
+  bgColor: type === "impact" ? "" : "bg-red-500/10 text-red-500",
   order: 1,
 });
 
@@ -52,6 +52,8 @@ const iconOptions = [
   "Target",
   "Award",
   "Heart",
+  "Video",
+  "Languages",
 ];
 
 const brandPresets = [
@@ -67,7 +69,7 @@ const StatsManagement = () => {
   const saveStat = useSaveStat();
   const deleteStat = useDeleteStat();
 
-  const [activeTab, setActiveTab] = useState<"impact" | "social">("impact");
+  const [activeTab, setActiveTab] = useState<FirestoreStat["type"]>("impact");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState<FirestoreStat>(emptyStat("impact"));
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -173,6 +175,9 @@ const StatsManagement = () => {
             <TabsTrigger value="social" className="px-4 py-2 text-sm font-semibold rounded-md">
               Social Media Reach
             </TabsTrigger>
+            <TabsTrigger value="video" className="px-4 py-2 text-sm font-semibold rounded-md">
+              Video Summary
+            </TabsTrigger>
           </TabsList>
           
           <div className="flex items-center gap-2">
@@ -197,6 +202,11 @@ const StatsManagement = () => {
         <TabsContent value="social" className="space-y-4">
           <p className="text-sm text-muted-foreground">
             Manage reach figures (YouTube Subscribers, Instagram Followers, Facebook Followers, Total Views) on social cards.
+          </p>
+        </TabsContent>
+        <TabsContent value="video" className="space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Manage the Subscribers, Videos, Total Views, and Languages counts shown below the homepage video section.
           </p>
         </TabsContent>
 

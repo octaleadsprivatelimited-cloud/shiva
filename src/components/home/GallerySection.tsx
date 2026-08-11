@@ -29,8 +29,9 @@ import img6285 from "@/assets/gallery/6285.jpg.jpeg";
 import img6287 from "@/assets/gallery/6287.jpg.jpeg";
 import img6291 from "@/assets/gallery/6291.jpg.jpeg";
 import img9709 from "@/assets/gallery/9709.jpg.jpeg";
+import { useGalleryItems } from "@/hooks/useCmsFirestore";
 
-const galleryItems = [
+const defaultGalleryItems = [
   {
     id: 1,
     image: beforeAfter1,
@@ -91,9 +92,14 @@ const galleryItems = [
   { id: 28, image: img9709, title: "Farm Visit", category: "Farm Visit" },
 ];
 
-const categories = ["All", "Success Story", "Farm Visit", "Soil Testing", "Consultation", "Technology"];
-
 export const GallerySection = () => {
+  const { data: cmsItems = [] } = useGalleryItems();
+  const galleryItems = cmsItems.length > 0
+    ? cmsItems
+        .filter((item) => item.type === "image" && Boolean(item.imageUrl))
+        .map((item) => ({ id: item.id, image: item.imageUrl, title: item.title, category: item.category }))
+    : defaultGalleryItems;
+  const categories = ["All", ...Array.from(new Set(galleryItems.map((item) => item.category)))];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);

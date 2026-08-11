@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, User, Clock } from "lucide-react";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { blogPosts } from "@/data/blogPosts";
-
-// Get first 3 posts for homepage
-const homepagePosts = blogPosts.slice(0, 3);
+import { usePublishedFirestoreBlogPosts } from "@/hooks/useCmsFirestore";
+import { firestoreBlogToDisplay } from "@/lib/blogDisplay";
 
 export const BlogSection = () => {
+  const { data: firestorePosts = [] } = usePublishedFirestoreBlogPosts();
+  const homepagePosts = firestorePosts.length > 0
+    ? firestorePosts.slice(0, 3).map(firestoreBlogToDisplay)
+    : blogPosts.slice(0, 3);
+
   return (
     <section id="blog" className="py-12 md:py-20 bg-muted scroll-mt-20">
       <div className="container mx-auto px-4">
